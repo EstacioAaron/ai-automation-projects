@@ -2,7 +2,7 @@
 
 Certified Industrial Engineer specializing in AI-powered process automation. I build intelligent workflow systems (n8n, LLM agents) that eliminate manual work and improve operational efficiency — combining formal process improvement training with hands-on automation development.
 
-💼 **LinkedIn:** [Connect with me]((https://www.linkedin.com/in/estacioaaron/))
+💼 **LinkedIn:** [Connect with me](https://www.linkedin.com/in/estacioaaron/)
 📧 **Email:** aaron.estacio@outlook.com
 
 ---
