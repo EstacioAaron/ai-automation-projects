@@ -19,16 +19,12 @@ An AI-powered email classification agent that interprets supplier responses, cla
 - Designed intelligent workflows that evaluate each purchase order line item independently, handling mixed fulfillment scenarios within a single supplier response, and automatically routing approvals, database updates, supplier replies, and purchase order actions
 - Engineered a reliable execution flow with multi-item processing, human-in-the-loop approvals, and error handling — reducing average manual processing time per supplier email by **~91%** (from ~17 min to ~1.5 min)
 - Eliminated manual email reconciliation, improving overall procurement workflow efficiency
-<details>
-<summary>📸 View screenshots</summary>
-
-![Supplier's actual email](AI-Driven%20Supplier%20Response%20Automation%20System/Supplier_Actual_Email.png)
-*Incoming supplier email before processing*
 
 📄 [Full write-up](https://broadleaf-soapwort-c9a.notion.site/AI-Driven-Supplier-Response-Automation-System-3ac82207a57680aebfc8f314f597287b)
 📄 [Full workflow diagram (PDF)](AI-Driven%20Supplier%20Response%20Automation%20System/Workflow_Full_Image.pdf)
 
-**Screenshots:**
+<details>
+<summary>📸 View screenshots</summary>
 
 ![Supplier's actual email](AI-Driven%20Supplier%20Response%20Automation%20System/Supplier_Actual_Email.png)
 *Incoming supplier email before processing*
@@ -41,6 +37,8 @@ An AI-powered email classification agent that interprets supplier responses, cla
 
 ![Newly replaced PO](AI-Driven%20Supplier%20Response%20Automation%20System/Newly_Replace_PO.png)
 *New purchase order generated for out-of-stock scenario*
+
+</details>
 
 ---
 
