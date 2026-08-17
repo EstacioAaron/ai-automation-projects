@@ -20,23 +20,24 @@ An AI-powered email classification agent that interprets supplier responses, cla
 - Engineered a reliable execution flow with multi-item processing, human-in-the-loop approvals, and error handling — reducing average manual processing time per supplier email by **~91%** (from ~17 min to ~1.5 min)
 - Eliminated manual email reconciliation, improving overall procurement workflow efficiency
 
-📝 [Full write-up](https://broadleaf-soapwort-c9a.notion.site/AI-Driven-Supplier-Response-Automation-System-3ac82207a57680aebfc8f314f597287b)
-🤖 [Full workflow diagram (PDF)](AI-Driven%20Supplier%20Response%20Automation%20System/Workflow_Full_Image.pdf)
+📄 [Full write-up](https://broadleaf-soapwort-c9a.notion.site/AI-Driven-Supplier-Response-Automation-System-3ac82207a57680aebfc8f314f597287b)
+📄 [Download full workflow diagram (PDF)](AI-Driven_Supplier_Response_Automation_System/Workflow_Full_Image.pdf)
 
 <details>
 <summary>📸 View screenshots</summary>
+<br>
 
-![Supplier's actual email](AI-Driven%20Supplier%20Response%20Automation%20System/Supplier_Actual_Email.png)
-*Incoming supplier email before processing*
+**Supplier's actual email**
+<img src="AI-Driven_Supplier_Response_Automation_System/Supplier_Actual_Email.png" width="400"/>
 
-![Final email sent to supplier](AI-Driven%20Supplier%20Response%20Automation%20System/Final_Email_to_Supplier.png)
-*Automated reply generated and sent to supplier*
+**Final email sent to supplier**
+<img src="AI-Driven_Supplier_Response_Automation_System/Final_Email_to_Supplier.png" width="400"/>
 
-![Updated PO line items](AI-Driven%20Supplier%20Response%20Automation%20System/Final_PO_Line_Items_Updates.png)
-*Purchase order line items updated after classification*
+**Updated PO line items**
+<img src="AI-Driven_Supplier_Response_Automation_System/Final_PO_Line_Items_Updates.png" width="400"/>
 
-![Newly replaced PO](AI-Driven%20Supplier%20Response%20Automation%20System/Newly_Replace_PO.png)
-*New purchase order generated for out-of-stock scenario*
+**Newly replaced PO**
+<img src="AI-Driven_Supplier_Response_Automation_System/Newly_Replace_PO.png" width="400"/>
 
 </details>
 
