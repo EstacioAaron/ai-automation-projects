@@ -21,7 +21,8 @@ An AI-powered email classification agent that interprets supplier responses, cla
 - Eliminated manual email reconciliation, improving overall procurement workflow efficiency
 
 📄 [Full write-up](https://broadleaf-soapwort-c9a.notion.site/AI-Driven-Supplier-Response-Automation-System-3ac82207a57680aebfc8f314f597287b)
-📄 [Download full workflow diagram (PDF)](AI-Driven_Supplier_Response_Automation_System/Workflow_Full_Image.pdf)
+
+🤖 [Download full workflow diagram (PDF)](https://raw.githubusercontent.com/EstacioAaron/ai-automation-projects/main/AI-Driven_Supplier_Response_Automation_System/Workflow_Full_Image.pdf)
 
 <details>
 <summary>📸 View screenshots</summary>
@@ -47,6 +48,7 @@ An AI-powered email classification agent that interprets supplier responses, cla
 <img src="AI-Driven_Supplier_Response_Automation_System/Newly_Replace_PO.png" width="400"/>
 
 </details>
+
 ---
 
 ### 2. AI-Powered Procurement and Inventory Management System
