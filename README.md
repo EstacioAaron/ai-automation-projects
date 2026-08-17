@@ -21,22 +21,23 @@ An AI-powered email classification agent that interprets supplier responses, cla
 - Eliminated manual email reconciliation, improving overall procurement workflow efficiency
 
 
-📄 [Full write-up & Documentation](https://broadleaf-soapwort-c9a.notion.site/AI-Driven-Supplier-Response-Automation-System-3ac82207a57680aebfc8f314f597287b)
-📄 [Full workflow diagram (PDF)](images/Workflow_Full_Image.pdf)
+📄 [Full write-up](https://broadleaf-soapwort-c9a.notion.site/AI-Driven-Supplier-Response-Automation-System-3ac82207a57680aebfc8f314f597287b)
+📄 [Full workflow diagram (PDF)](AI-Driven%20Supplier%20Response%20Automation%20System/Workflow_Full_Image.pdf)
 
 **Screenshots:**
 
-![Supplier's actual email](images/Supplier_Actual_Email.png)
+![Supplier's actual email](AI-Driven%20Supplier%20Response%20Automation%20System/Supplier_Actual_Email.png)
 *Incoming supplier email before processing*
 
-![Final email sent to supplier](images/Final_Email_to_Supplier.png)
+![Final email sent to supplier](AI-Driven%20Supplier%20Response%20Automation%20System/Final_Email_to_Supplier.png)
 *Automated reply generated and sent to supplier*
 
-![Updated PO line items](images/Final_PO_Line_Items_Updates.png)
+![Updated PO line items](AI-Driven%20Supplier%20Response%20Automation%20System/Final_PO_Line_Items_Updates.png)
 *Purchase order line items updated after classification*
 
-![Newly replaced PO](images/Newly_Replace_PO.png)
+![Newly replaced PO](AI-Driven%20Supplier%20Response%20Automation%20System/Newly_Replace_PO.png)
 *New purchase order generated for out-of-stock scenario*
+
 ---
 
 ### 2. AI-Powered Procurement and Inventory Management System
