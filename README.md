@@ -28,19 +28,25 @@ An AI-powered email classification agent that interprets supplier responses, cla
 <br>
 
 **Supplier's actual email**
+<br>
 <img src="AI-Driven_Supplier_Response_Automation_System/Supplier_Actual_Email.png" width="400"/>
+<br><br>
 
 **Final email sent to supplier**
+<br>
 <img src="AI-Driven_Supplier_Response_Automation_System/Final_Email_to_Supplier.png" width="400"/>
+<br><br>
 
 **Updated PO line items**
+<br>
 <img src="AI-Driven_Supplier_Response_Automation_System/Final_PO_Line_Items_Updates.png" width="400"/>
+<br><br>
 
 **Newly replaced PO**
+<br>
 <img src="AI-Driven_Supplier_Response_Automation_System/Newly_Replace_PO.png" width="400"/>
 
 </details>
-
 ---
 
 ### 2. AI-Powered Procurement and Inventory Management System
