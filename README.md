@@ -1,4 +1,4 @@
-# Hi, I'm Aaron 👋
+# Hi, I'm Aaron 
 
 Certified Industrial Engineer specializing in AI-powered process automation. I build intelligent workflow systems (n8n, LLM agents) that eliminate manual work and improve operational efficiency — combining formal process improvement training with hands-on automation development.
 
