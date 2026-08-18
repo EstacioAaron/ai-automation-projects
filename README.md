@@ -30,7 +30,7 @@ An AI-powered email classification agent that interprets supplier responses, cla
 
 **System Architecture Diagram**
 <br>
-<img src="AI-Driven_Supplier_Response_Automation_System/System Architecture Diagram.png.png" width="400"/>
+<img src="AI-Driven_Supplier_Response_Automation_System/System_Architecture_Diagram.png" width="400"/>
 <br><br>
 
 **Supplier's actual email**
