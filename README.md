@@ -12,7 +12,7 @@ Certified Industrial Engineer specializing in AI-powered process automation. I b
 ### 1. AI-Driven Supplier Response Automation System
 **Tools:** n8n, AI Agent (OpenAI), Gmail, Slack, Google Sheets
 
-🎥 [Watch demo video](https://drive.google.com/file/d/1bEC3Vn-LoiP-GInlcJ4aa9muzaaKUE9D/view)
+🎥 [Watch demo video](https://drive.google.com/file/d/1-luDla_WOYjqDUfhAlMSg7OkIuGJHuHE/view)
 
 An AI-powered email classification agent that interprets supplier responses, classifies fulfillment status (Confirmed, Partial, Out of Stock), and extracts structured purchase order data from unstructured emails.
 
