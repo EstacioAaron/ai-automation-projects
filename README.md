@@ -74,7 +74,7 @@ An AI-powered procurement automation system that monitors inventory, detects reo
 
 ---
 
-## 🛠 Skills
+## Skills
 
 **AI & Automation:** Workflow Automation (n8n), Prompt Engineering, API Integration, Business Process Automation, AI Agents / RAG, Python (currently developing)
 
