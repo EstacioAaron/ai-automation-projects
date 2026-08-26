@@ -81,8 +81,8 @@ An AI-powered procurement automation system that monitors inventory, detects reo
 
 ---
 
-## 📈 Currently Learning
-Python — building toward more custom automation and data-driven solutions beyond no-code tools.
+## Coding
+Python — Fundamentals: variables, control flow, functions (including recursion), lists, tuples, dictionaries, exception handling, and debugging. Built hands-on experience with mutable vs. immutable data structures, multi-parameter functions, error handling with try/except, and testing/debugging strategies for writing reliable Python code.
 
 ---
 
