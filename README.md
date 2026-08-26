@@ -2,17 +2,17 @@
 
 Certified Industrial Engineer specializing in AI-powered process automation. I build intelligent workflow systems (n8n, LLM agents) that eliminate manual work and improve operational efficiency — combining formal process improvement training with hands-on automation development.
 
-💼 **LinkedIn:** [Connect with me](https://www.linkedin.com/in/estacioaaron/)
-📧 **Email:** aaron.estacio@outlook.com
+ **LinkedIn:** [Connect with me](https://www.linkedin.com/in/estacioaaron/)
+ **Email:** aaron.estacio@outlook.com
 
 ---
 
-## 🚀 Projects
+## Projects
 
 ### 1. AI-Driven Supplier Response Automation System
 **Tools:** n8n, AI Agent (OpenAI), Gmail, Slack, Google Sheets
 
-🎥 [Watch demo video](https://drive.google.com/file/d/1-luDla_WOYjqDUfhAlMSg7OkIuGJHuHE/view)
+ [Watch demo video](https://drive.google.com/file/d/1-luDla_WOYjqDUfhAlMSg7OkIuGJHuHE/view)
 
 An AI-powered email classification agent that interprets supplier responses, classifies fulfillment status (Confirmed, Partial, Out of Stock), and extracts structured purchase order data from unstructured emails.
 
@@ -69,7 +69,7 @@ An AI-powered procurement automation system that monitors inventory, detects reo
 - Automated the end-to-end procurement workflow, including approval routing, supplier communication, PDF generation, inventory updates, and purchase order tracking through integrated workflows
 - Designed a reliable workflow with batch processing, error handling, and duplicate prevention, and audit-ready transaction tracking, eliminating manual procurement tasks and improving process reliability
 
-📄 [Full write-up & screenshots](https://app.notion.com/p/AI-Powered-Procurement-and-Inventory-Management-System-3b182207a57680419529e576ffe2ac0b?source=copy_link)
+ [Full write-up & screenshots](https://app.notion.com/p/AI-Powered-Procurement-and-Inventory-Management-System-3b182207a57680419529e576ffe2ac0b?source=copy_link)
 
 ---
 
