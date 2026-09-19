@@ -236,14 +236,14 @@ p { margin: 0; }
   top: -60px;
   right: -85px;
   width: 100%;
-  height: 280px;
+  height: 100%;
   background-image: url('workflow-bg-crop.png');
   background-size: cover;
   background-position: center;
   border-radius: var(--radius-lg);
   z-index: 0;
   opacity: 0.9;
-  transform: scale(0.9);
+  transform: scale(1);
   filter: blur(2px);
 }
 
@@ -253,14 +253,14 @@ p { margin: 0; }
   bottom: 0px;
   right: 50px;
   width: 100%;
-  height: 280px;  
+  height: 100%;
   background-image: url('workflow-bg-crop.png');
   background-size: cover;
   background-position: 70% 30%;
   border-radius: var(--radius-lg);
   z-index: 0;
   opacity: 0.9;
-  transform: scale(0.9);
+  transform: scale(1);
   filter: blur(1px) brightness(0.85);
 }
 
@@ -669,11 +669,13 @@ section { padding: 97px 0; }
 .modal-media-img {
   width: 100%;
   display: block;
+  margin-top: 116px;
   border-radius: var(--radius-md);
   border: 1px solid rgba(245, 245, 240, 0.12);
+  box-shadow: 0 18px 35px rgba(0, 0, 0, 0.32);
 }
 
-.modal-workflow-link {
+.modal-project-action {
   align-self: flex-start;
   display: inline-flex;
   align-items: center;
@@ -685,13 +687,162 @@ section { padding: 97px 0; }
   text-transform: uppercase;
   color: var(--text-muted);
   text-decoration: none;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  margin-left: 20px;
+  margin-top: 20px;
   border-bottom: 1px solid transparent;
   transition: color 0.15s ease, border-color 0.15s ease;
 }
 
-.modal-workflow-link:hover {
+.modal-project-action:hover {
   color: var(--accent-dark);
   border-color: var(--accent-dark);
+}
+
+.modal-action-arrow {
+  flex-shrink: 0;
+  transition: transform 0.15s ease;
+}
+
+.modal-project-action:hover .modal-action-arrow {
+  transform: translate(1px, -1px);
+}
+
+.modal-project-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 14px;
+}
+
+/* Nested project content (workflow, screenshots, and capabilities). */
+#project-child-backdrop { z-index: 110; }
+
+#project-child-backdrop .modal-box {
+  max-width: 1180px;
+  height: 82vh;
+  padding: 38px 44px 44px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.child-breadcrumb {
+  font-family: var(--font-mono);
+  font-size: 14px;
+  color: var(--text);
+  padding-right: 100px;
+  margin-bottom: 28px;
+}
+
+.child-content {
+  flex: 1;
+  min-height: 0;
+  overflow: auto;
+}
+
+.workflow-frame {
+  width: 100%;
+  height: 100%;
+  border: 1px solid rgba(245, 245, 240, 0.16);
+  border-radius: var(--radius-md);
+  background: rgba(15, 16, 15, 0.35);
+}
+
+.carousel {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.carousel-title {
+  width: min(820px, 100%);
+  font-size: 20px;
+  margin: 0 0 18px;
+}
+
+.carousel-stage {
+  position: relative;
+  flex: 1;
+  min-height: 0;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 58px;
+}
+
+.carousel-image {
+  display: block;
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  border-radius: var(--radius-md);
+  border: 1px solid rgba(245, 245, 240, 0.16);
+}
+
+.carousel-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  border: 1px solid rgba(245, 245, 240, 0.25);
+  background: rgba(245, 245, 240, 0.12);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  color: var(--text);
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.carousel-arrow:hover { background: rgba(245, 245, 240, 0.2); }
+.carousel-arrow.prev { left: 4px; }
+.carousel-arrow.next { right: 4px; }
+
+.carousel-dots {
+  display: flex;
+  justify-content: center;
+  gap: 9px;
+  padding-top: 18px;
+}
+
+.carousel-dot {
+  width: 8px;
+  height: 8px;
+  padding: 0;
+  border-radius: 50%;
+  border: 1px solid rgba(245, 245, 240, 0.55);
+  background: transparent;
+  cursor: pointer;
+}
+
+.carousel-dot.active { background: var(--text); }
+
+.capabilities-list {
+  max-width: 780px;
+  margin: 0 auto;
+  padding: 8px 0 8px 24px;
+  color: var(--text);
+  font-size: 17px;
+}
+
+.capabilities-list li { margin-bottom: 12px; }
+
+@media (max-width: 780px) {
+  #project-child-backdrop .modal-box {
+    width: 92vw;
+    height: 88vh;
+    padding: 30px 20px 24px;
+  }
+
+  .child-breadcrumb { padding-right: 74px; }
+  .carousel-stage { padding: 0 42px; }
 }
 
 .modal-media-placeholder {
@@ -760,6 +911,8 @@ section { padding: 97px 0; }
     border-bottom: 1px solid rgba(245, 245, 240, 0.12);
   }
 
+  .modal-media-img { margin-top: 0; }
+
   .modal-body-scroll {
     direction: ltr;
   }
@@ -769,26 +922,7 @@ section { padding: 97px 0; }
    About
    ============================================ */
 #about .wrap {
-  display: grid;
-  grid-template-columns: 242px 1fr;
-  gap: 53px;
-  align-items: start;
-}
-
-.headshot {
-  width: 100%;
-  aspect-ratio: 1;
-  border-radius: var(--radius-lg);
-  background: var(--surface);
-  border: 1px dashed var(--glass-border-color);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: var(--font-mono);
-  font-size: 14px;
-  color: var(--text-muted);
-  text-align: center;
-  padding: 18px;
+  display: block;
 }
 
 .skills-lead { margin-top: 4px; }
@@ -797,56 +931,6 @@ section { padding: 97px 0; }
 
 .about-copy p { margin-bottom: 20px; font-size: 19px; color: var(--text); }
 .about-copy p:last-child { margin-bottom: 0; }
-
-@media (max-width: 700px) {
-  #about .wrap { grid-template-columns: 1fr; }
-  .headshot { max-width: 176px; }
-}
-
-/* ============================================
-   Currently
-   ============================================ */
-.currently-banner {
-  border-top: 1px solid rgba(245, 245, 240, 0.12);
-  border-bottom: 1px solid rgba(245, 245, 240, 0.12);
-  padding: 40px 0;
-}
-
-.currently-banner .wrap {
-  display: flex;
-  align-items: center;
-  gap: 15px;
-  flex-wrap: wrap;
-}
-
-.status-dot {
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  background: var(--accent-gradient);
-  flex-shrink: 0;
-  position: relative;
-}
-
-.status-dot::after {
-  content: "";
-  position: absolute;
-  inset: -6px;
-  border-radius: 50%;
-  border: 1px solid var(--accent-dark);
-  animation: ping 2.4s ease-out infinite;
-}
-
-@keyframes ping {
-  0% { transform: scale(0.6); opacity: 0.8; }
-  100% { transform: scale(2.2); opacity: 0; }
-}
-
-.currently-banner p {
-  font-family: var(--font-mono);
-  font-size: 17px;
-  color: var(--text);
-}
 
 /* ============================================
    Connect
@@ -948,8 +1032,7 @@ footer .wrap {
   .modal-category,
   .modal-close,
   .contact-links a,
-  footer,
-  .currently-banner p
+  footer
 ) {
   font-weight: 400;
 }
@@ -1072,10 +1155,9 @@ button:focus-visible {
 <!-- ============ ABOUT ============ -->
 <section id="about" class="alt-surface">
   <div class="wrap">
-    <div class="headshot reveal">Headshot placeholder</div>
     <div class="about-copy reveal">
       <span class="eyebrow" style="display:block; margin-bottom:14px;">Background</span>
-      <p>I have a background in Industrial Engineering, which shaped how I approach problems: looking at processes as systems, identifying bottlenecks, eliminating waste, and finding where things break down under pressure.</p>
+      <p>My background as a Certified Industrial Engineer (CIE) shaped how I approach problems: looking at processes as systems, identifying bottlenecks, eliminating waste, and finding where things break down under pressure.</p>
       <p>That way of thinking naturally led me to automation. Across different operations, I kept seeing the same pattern: people spending time on repetitive, error prone work that a well designed system could handle more reliably.</p>
       <p>Now I build those systems end to end, designed around the actual problem, tested before deployment, and focused on improving the process rather than simply adding technology.</p>
       <p class="skills-lead">Aside from automation, here's what else I bring to the table.</p>
@@ -1083,14 +1165,6 @@ button:focus-visible {
     </div>
   </div>
 </section>
-
-<!-- ============ CURRENTLY ============ -->
-<div class="currently-banner">
-  <div class="wrap">
-    <span class="status-dot" aria-hidden="true"></span>
-    <p>Currently building automation systems, and open to new opportunities, freelance or full time.</p>
-  </div>
-</div>
 
 <!-- ============ CONNECT ============ -->
 <section id="connect">
@@ -1128,10 +1202,11 @@ button:focus-visible {
     <div class="modal-media">
       <img id="modal-media-img" class="modal-media-img" src="" alt="" style="display:none;">
       <div class="modal-media-placeholder" id="modal-media-placeholder">Screenshot placeholder</div>
-      <a id="modal-workflow-link" class="modal-workflow-link" href="#" target="_blank" rel="noopener" style="display:none;">
-        See the full workflow image
-        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
-      </a>
+      <div class="modal-project-actions">
+        <button type="button" id="modal-workflow-link" class="modal-project-action">View full workflow <svg class="modal-action-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg></button>
+        <button type="button" id="modal-screenshots-link" class="modal-project-action">Explore Screenshots <svg class="modal-action-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg></button>
+        <button type="button" id="modal-capabilities-link" class="modal-project-action">Key Capabilities <svg class="modal-action-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg></button>
+      </div>
     </div>
 
     <div class="modal-body-scroll">
@@ -1161,6 +1236,15 @@ button:focus-visible {
         </div>
       </div>
     </div>
+  </div>
+</div>
+
+<!-- ============ NESTED PROJECT VIEW ============ -->
+<div class="modal-backdrop" id="project-child-backdrop">
+  <div class="modal-box" role="dialog" aria-modal="true" aria-labelledby="project-child-breadcrumb">
+    <button class="modal-close" id="project-child-close" aria-label="Return to project">Esc ✕</button>
+    <div class="child-breadcrumb" id="project-child-breadcrumb"></div>
+    <div class="child-content" id="project-child-content"></div>
   </div>
 </div>
 
@@ -1267,6 +1351,79 @@ const projectData = [
   }
 ];
 
+// Supporting content for the three nested views in each project modal.
+const projectDetails = {
+  "AI Driven Supplier Response Automation System": {
+    screenshots: [
+      { src: "supplier response.png", label: "Supplier response - the trigger" },
+      { src: "AI-Email-Classification.png", label: "Email Classification" },
+      { src: "PO-Replacement.png", label: "PO Replacement for backup supplier" },
+      { src: "Database-monitoring-updates.png", label: "Database and monitoring updates" },
+      { src: "process-monitoring_human_control.png", label: "Process monitoring and human control" }
+    ],
+    capabilities: [
+      "AI-powered supplier email interpretation",
+      "Item-level fulfillment classification",
+      "Human approval for partial fulfillment",
+      "Switching suppliers and initiating replacement procurement for OoS items",
+      "Automated procurement record updates",
+      "Slack notifications and operational visibility",
+      "Multi-item processing synchronization"
+    ]
+  },
+  "Smart Receipts Archiver": {
+    screenshots: [
+      { src: "Receipt_trigger.png", label: "Receipt sent to the Telegram (The trigger)" },
+      { src: "Google drive receipt storage.png", label: "Google Drive receipt storage" },
+      { src: "Google-sheet-receipt-data-logger.png", label: "Google Sheet receipt data logger" }
+    ],
+    capabilities: [
+      "Telegram receipt photo intake",
+      "Receipt image validation",
+      "Google Gemini receipt data extraction",
+      "Google Sheets data logging",
+      "Original receipt image preservation",
+      "Google Drive file storage",
+      "Automatic folder organization by submission date",
+      "Invalid file handling"
+    ]
+  },
+  "Speed to Lead SLA Enforcer": {
+    screenshots: [
+      { src: "Lead-form_The-trigger.png", label: "Lead form (The trigger)" },
+      { src: "welcome_email.png", label: "Welcome Email" },
+      { src: "Execution logs 1.png", label: "Execution logs" },
+      { src: "executions log 2.png", label: "Executions log 2" },
+      { src: "Lead contact field summary.png", label: "Lead contact field summary" }
+    ],
+    capabilities: [
+      "Automatic lead tagging on form submission",
+      "Instant welcome email to new leads",
+      "Configurable SLA response timer (20 minutes)",
+      "Automated check for rep follow-up (via \"contacted\" tag)",
+      "Automatic lead reassignment when SLA is missed",
+      "Internal notifications to both owners (accountability and priority follow-up)",
+      "Cross-platform Slack alert via webhook integration (n8n)",
+      "SLA outcome tagging for reporting (\"sla-met\" / \"sla-missed\")"
+    ]
+  },
+  "AI Powered Procurement and Inventory Management System": {
+    screenshots: [],
+    capabilities: [
+      "Automatically generates purchase orders based on business rules",
+      "Live current stock calculation from transaction history",
+      "30 day rolling usage forecasting per item",
+      "Automatic risk level classification (High/Medium/OK/No Usage Data), scaled to each item's own lead time",
+      "Daily scheduled inventory check with automatic filtering for at risk items",
+      "Automatically reroutes to alternate suppliers when items are out of stock",
+      "Automated approval routing and supplier communication",
+      "Grouped, prioritized Slack alerts sorted by urgency",
+      "Duplicate prevention and error handling across batch processing",
+      "Full audit ready transaction tracking"
+    ]
+  }
+};
+
 // ============================================
 // Render project categories + cards (whole card is clickable)
 // ============================================
@@ -1348,7 +1505,7 @@ function setupModal(backdropId, closeId) {
 
   function close() {
     backdrop.classList.remove("open");
-    document.body.style.overflow = "";
+    document.body.style.overflow = document.querySelector(".modal-backdrop.open") ? "hidden" : "";
     if (lastFocusedEl) lastFocusedEl.focus();
   }
 
@@ -1362,9 +1519,14 @@ function setupModal(backdropId, closeId) {
 
 const projectModal = setupModal("modal-backdrop", "modal-close");
 const skillsModal = setupModal("skills-modal-backdrop", "skills-modal-close");
+const projectChildModal = setupModal("project-child-backdrop", "project-child-close");
 
 document.addEventListener("keydown", (e) => {
   if (e.key !== "Escape") return;
+  if (projectChildModal.backdrop.classList.contains("open")) {
+    projectChildModal.close();
+    return;
+  }
   if (projectModal.backdrop.classList.contains("open")) projectModal.close();
   if (skillsModal.backdrop.classList.contains("open")) skillsModal.close();
 });
@@ -1384,8 +1546,95 @@ const modalTools = document.getElementById("modal-tools");
 const modalMediaImg = document.getElementById("modal-media-img");
 const modalMediaPlaceholder = document.getElementById("modal-media-placeholder");
 const modalWorkflowLink = document.getElementById("modal-workflow-link");
+const modalScreenshotsLink = document.getElementById("modal-screenshots-link");
+const modalCapabilitiesLink = document.getElementById("modal-capabilities-link");
+const projectChildBreadcrumb = document.getElementById("project-child-breadcrumb");
+const projectChildContent = document.getElementById("project-child-content");
+let activeProject = null;
+let activeCarouselIndex = 0;
+
+function openProjectChild(view) {
+  if (!activeProject) return;
+
+  const details = projectDetails[activeProject.title] || { screenshots: [], capabilities: [] };
+  const viewLabel = view === "workflow" ? "View workflow" : view === "screenshots" ? "Screenshots" : "Key capabilities";
+  projectChildBreadcrumb.textContent = `Project | ${activeProject.title} | ${viewLabel}`;
+  projectChildContent.innerHTML = "";
+
+  if (view === "workflow") {
+    if (activeProject.workflowPdf) {
+      const frame = document.createElement("iframe");
+      frame.className = "workflow-frame";
+      frame.src = activeProject.workflowPdf;
+      frame.title = `${activeProject.title} workflow PDF`;
+      projectChildContent.appendChild(frame);
+    }
+  } else if (view === "screenshots") {
+    renderCarousel(details.screenshots);
+  } else {
+    const list = document.createElement("ul");
+    list.className = "capabilities-list";
+    details.capabilities.forEach(capability => {
+      const item = document.createElement("li");
+      item.textContent = capability;
+      list.appendChild(item);
+    });
+    projectChildContent.appendChild(list);
+  }
+
+  projectChildModal.open();
+}
+
+function renderCarousel(screenshots) {
+  // Inventory intentionally renders an empty media area until screenshots exist.
+  if (!screenshots.length) return;
+
+  const carousel = document.createElement("div");
+  carousel.className = "carousel";
+  carousel.innerHTML = `
+    <h3 class="carousel-title"></h3>
+    <div class="carousel-stage">
+      <button type="button" class="carousel-arrow prev" aria-label="Previous screenshot">‹</button>
+      <img class="carousel-image" src="" alt="">
+      <button type="button" class="carousel-arrow next" aria-label="Next screenshot">›</button>
+    </div>
+    <div class="carousel-dots" aria-label="Choose screenshot"></div>`;
+  projectChildContent.appendChild(carousel);
+
+  const title = carousel.querySelector(".carousel-title");
+  const image = carousel.querySelector(".carousel-image");
+  const dots = carousel.querySelector(".carousel-dots");
+
+  function showScreenshot(index) {
+    activeCarouselIndex = (index + screenshots.length) % screenshots.length;
+    const screenshot = screenshots[activeCarouselIndex];
+    title.textContent = screenshot.label;
+    image.src = screenshot.src;
+    image.alt = screenshot.label;
+    dots.querySelectorAll(".carousel-dot").forEach((dot, dotIndex) => {
+      const isActive = dotIndex === activeCarouselIndex;
+      dot.classList.toggle("active", isActive);
+      dot.setAttribute("aria-current", isActive ? "true" : "false");
+    });
+  }
+
+  screenshots.forEach((screenshot, index) => {
+    const dot = document.createElement("button");
+    dot.type = "button";
+    dot.className = "carousel-dot";
+    dot.setAttribute("aria-label", `Show screenshot ${index + 1}: ${screenshot.label}`);
+    dot.addEventListener("click", () => showScreenshot(index));
+    dots.appendChild(dot);
+  });
+
+  carousel.querySelector(".prev").addEventListener("click", () => showScreenshot(activeCarouselIndex - 1));
+  carousel.querySelector(".next").addEventListener("click", () => showScreenshot(activeCarouselIndex + 1));
+  showScreenshot(0);
+}
 
 function openProjectModal(category, project) {
+  activeProject = project;
+  activeCarouselIndex = 0;
   modalCategory.textContent = category;
   modalTitle.textContent = project.title;
   modalProblem.textContent = project.problem;
@@ -1418,15 +1667,19 @@ function openProjectModal(category, project) {
   }
 
   if (project.workflowPdf) {
-    modalWorkflowLink.href = project.workflowPdf;
+    modalWorkflowLink.disabled = false;
     modalWorkflowLink.style.display = "inline-flex";
   } else {
-    modalWorkflowLink.removeAttribute("href");
+    modalWorkflowLink.disabled = true;
     modalWorkflowLink.style.display = "none";
   }
 
   projectModal.open();
 }
+
+modalWorkflowLink.addEventListener("click", () => openProjectChild("workflow"));
+modalScreenshotsLink.addEventListener("click", () => openProjectChild("screenshots"));
+modalCapabilitiesLink.addEventListener("click", () => openProjectChild("capabilities"));
 
 // ============================================
 // Skills modal trigger
