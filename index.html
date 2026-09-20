@@ -236,7 +236,7 @@ p { margin: 0; }
   top: -60px;
   right: -85px;
   width: 100%;
-  height: 280px;
+  height: 314px;
   background-image: url('workflow-bg-crop.png');
   background-size: cover;
   background-position: center;
@@ -253,7 +253,7 @@ p { margin: 0; }
   bottom: 0px;
   right: 50px;
   width: 100%;
-  height: 280px;  
+  height: 314px;
   background-image: url('workflow-bg-crop.png');
   background-size: cover;
   background-position: 70% 30%;
@@ -669,8 +669,10 @@ section { padding: 97px 0; }
 .modal-media-img {
   width: 100%;
   display: block;
+  margin-top: 116px;
   border-radius: var(--radius-md);
   border: 1px solid rgba(245, 245, 240, 0.12);
+  box-shadow: var(--shadow-soft);
 }
 
 .modal-project-action {
@@ -684,6 +686,8 @@ section { padding: 97px 0; }
   letter-spacing: 0.05em;
   text-transform: uppercase;
   color: var(--text-muted);
+  margin-left: 20px;
+  margin-top: 20px;
   text-decoration: none;
   background: none;
   border: none;
@@ -907,26 +911,7 @@ section { padding: 97px 0; }
    About
    ============================================ */
 #about .wrap {
-  display: grid;
-  grid-template-columns: 242px 1fr;
-  gap: 53px;
-  align-items: start;
-}
-
-.headshot {
-  width: 100%;
-  aspect-ratio: 1;
-  border-radius: var(--radius-lg);
-  background: var(--surface);
-  border: 1px dashed var(--glass-border-color);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: var(--font-mono);
-  font-size: 14px;
-  color: var(--text-muted);
-  text-align: center;
-  padding: 18px;
+  max-width: var(--max-width);
 }
 
 .skills-lead { margin-top: 4px; }
@@ -935,56 +920,6 @@ section { padding: 97px 0; }
 
 .about-copy p { margin-bottom: 20px; font-size: 19px; color: var(--text); }
 .about-copy p:last-child { margin-bottom: 0; }
-
-@media (max-width: 700px) {
-  #about .wrap { grid-template-columns: 1fr; }
-  .headshot { max-width: 176px; }
-}
-
-/* ============================================
-   Currently
-   ============================================ */
-.currently-banner {
-  border-top: 1px solid rgba(245, 245, 240, 0.12);
-  border-bottom: 1px solid rgba(245, 245, 240, 0.12);
-  padding: 40px 0;
-}
-
-.currently-banner .wrap {
-  display: flex;
-  align-items: center;
-  gap: 15px;
-  flex-wrap: wrap;
-}
-
-.status-dot {
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  background: var(--accent-gradient);
-  flex-shrink: 0;
-  position: relative;
-}
-
-.status-dot::after {
-  content: "";
-  position: absolute;
-  inset: -6px;
-  border-radius: 50%;
-  border: 1px solid var(--accent-dark);
-  animation: ping 2.4s ease-out infinite;
-}
-
-@keyframes ping {
-  0% { transform: scale(0.6); opacity: 0.8; }
-  100% { transform: scale(2.2); opacity: 0; }
-}
-
-.currently-banner p {
-  font-family: var(--font-mono);
-  font-size: 17px;
-  color: var(--text);
-}
 
 /* ============================================
    Connect
@@ -1178,6 +1113,7 @@ button:focus-visible {
 	    <svg class="familiar-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
 	  </a>
 	</div>
+  </div>
 </header>
 
 <!-- ============ PROJECTS ============ -->
@@ -1210,10 +1146,9 @@ button:focus-visible {
 <!-- ============ ABOUT ============ -->
 <section id="about" class="alt-surface">
   <div class="wrap">
-    <div class="headshot reveal">Headshot placeholder</div>
     <div class="about-copy reveal">
       <span class="eyebrow" style="display:block; margin-bottom:14px;">Background</span>
-      <p>I have a background in Industrial Engineering, which shaped how I approach problems: looking at processes as systems, identifying bottlenecks, eliminating waste, and finding where things break down under pressure.</p>
+      <p>My background as a Certified Industrial Engineer (CIE) shaped how I approach problems: looking at processes as systems, identifying bottlenecks, eliminating waste, and finding where things break down under pressure.</p>
       <p>That way of thinking naturally led me to automation. Across different operations, I kept seeing the same pattern: people spending time on repetitive, error prone work that a well designed system could handle more reliably.</p>
       <p>Now I build those systems end to end, designed around the actual problem, tested before deployment, and focused on improving the process rather than simply adding technology.</p>
       <p class="skills-lead">Aside from automation, here's what else I bring to the table.</p>
@@ -1221,14 +1156,6 @@ button:focus-visible {
     </div>
   </div>
 </section>
-
-<!-- ============ CURRENTLY ============ -->
-<div class="currently-banner">
-  <div class="wrap">
-    <span class="status-dot" aria-hidden="true"></span>
-    <p>Currently building automation systems, and open to new opportunities, freelance or full time.</p>
-  </div>
-</div>
 
 <!-- ============ CONNECT ============ -->
 <section id="connect">
@@ -1267,9 +1194,9 @@ button:focus-visible {
       <img id="modal-media-img" class="modal-media-img" src="" alt="" style="display:none;">
       <div class="modal-media-placeholder" id="modal-media-placeholder">Screenshot placeholder</div>
       <div class="modal-project-actions">
-        <button type="button" id="modal-workflow-link" class="modal-project-action">View full workflow <span aria-hidden="true">↗</span></button>
-        <button type="button" id="modal-screenshots-link" class="modal-project-action">Explore Screenshots <span aria-hidden="true">↗</span></button>
-        <button type="button" id="modal-capabilities-link" class="modal-project-action">Key Capabilities <span aria-hidden="true">↗</span></button>
+        <button type="button" id="modal-workflow-link" class="modal-project-action">View full workflow <svg class="familiar-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg></button>
+        <button type="button" id="modal-screenshots-link" class="modal-project-action">Explore Screenshots <svg class="familiar-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg></button>
+        <button type="button" id="modal-capabilities-link" class="modal-project-action">Key Capabilities <svg class="familiar-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg></button>
       </div>
     </div>
 
@@ -1456,7 +1383,7 @@ const projectDetails = {
     screenshots: [
       { src: "Lead-form_The-trigger.png", label: "Lead form (The trigger)" },
       { src: "Execution logs 1.png", label: "Execution logs" },
-      { src: "executions log 2.png", label: "Executions log 2" },
+      { src: "executions log 2.png", label: "Welcome email" },
       { src: "Lead contact field summary.png", label: "Lead contact field summary" }
     ],
     capabilities: [
@@ -1940,5 +1867,6 @@ if ("IntersectionObserver" in window) {
 }
 
 </script>
+<script defer src="/_vercel/insights/script.js"></script>
 </body>
 </html>
