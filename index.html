@@ -145,6 +145,11 @@ p { margin: 0; }
   transform: translateY(-1px);
 }
 
+.btn-outline {
+  background: transparent;
+  box-shadow: none;
+}
+
 /* ============================================
    Nav
    ============================================ */
@@ -237,6 +242,9 @@ p { margin: 0; }
    ============================================ */
 .hero {
   padding: 106px 0 97px;
+  min-height: calc(100svh - var(--site-nav-height, 0px));
+  display: flex;
+  align-items: center;
 }
 
 .hero .wrap {
@@ -244,6 +252,7 @@ p { margin: 0; }
   grid-template-columns: 1.15fr 0.85fr;
   gap: 62px;
   align-items: center;
+  width: 100%;
 }
 
 .hero-copy .eyebrow { display: block; margin-bottom: 20px; }
@@ -527,6 +536,8 @@ section { padding: 97px 0; }
   box-shadow: var(--shadow-soft);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
   cursor: pointer;
+  display: flex;
+  flex-direction: column;
 }
 
 .project-card:hover,
@@ -554,6 +565,7 @@ section { padding: 97px 0; }
   color: var(--text-muted);
   font-size: 17px;
   margin-bottom: 20px;
+  flex-grow: 1;
 }
 
 .project-result {
@@ -565,6 +577,7 @@ section { padding: 97px 0; }
   padding: 9px 13px;
   margin-bottom: 20px;
   display: inline-block;
+  align-self: flex-start;
 }
 
 .tag-row { display: flex; flex-wrap: wrap; gap: 9px; }
@@ -708,6 +721,15 @@ section { padding: 97px 0; }
   border-radius: var(--radius-md);
   border: 1px solid rgba(245, 245, 240, 0.12);
   box-shadow: var(--shadow-soft);
+}
+
+.modal-media-img.workflow-link {
+  cursor: pointer;
+}
+
+.modal-media-img.workflow-link:focus-visible {
+  outline: 2px solid var(--accent-dark);
+  outline-offset: 4px;
 }
 
 .modal-project-action {
@@ -1378,7 +1400,7 @@ body {
       <p class="hero-sub">I build automation systems that catch problems<br>before they cost you hours.</p>
       <div class="hero-actions">
         <a href="#projects" class="btn btn-solid">See what I've built</a>
-        <a href="#connect" class="btn">Let's talk about your process</a>
+        <a href="#connect" class="btn btn-outline">Let's talk about your process</a>
       </div>
     </div>
 
@@ -1388,7 +1410,7 @@ body {
  	 </div>
 	  <a href="#connect" class="familiar-label">
 	    Sounds familiar?
-	    <svg class="familiar-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+	    <svg class="familiar-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="13 6 19 12 13 18"></polyline></svg>
 	  </a>
 	</div>
   </div>
@@ -1443,7 +1465,7 @@ body {
     <p class="contact-body" style="margin-top:18px;">If something above sounds close to a problem you're dealing with,<br>I'd be glad to hear about it.</p>
     <div class="email-actions">
       <a href="mailto:aaron.estacio@outlook.com" class="btn btn-solid">Email me</a>
-      <button type="button" class="btn btn-solid email-reveal" id="email-reveal" data-email="aaron.estacio@outlook.com">
+      <button type="button" class="btn btn-outline email-reveal" id="email-reveal" data-email="aaron.estacio@outlook.com">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"></rect><path d="m22 7-10 5L2 7"></path></svg>
         Click to reveal email address
       </button>
@@ -1472,9 +1494,9 @@ body {
       <img id="modal-media-img" class="modal-media-img" src="" alt="" style="display:none;">
       <div class="modal-media-placeholder" id="modal-media-placeholder">Screenshot placeholder</div>
       <div class="modal-project-actions">
-        <button type="button" id="modal-workflow-link" class="modal-project-action">View full workflow <svg class="familiar-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg></button>
-        <button type="button" id="modal-screenshots-link" class="modal-project-action">Explore Screenshots <svg class="familiar-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg></button>
-        <button type="button" id="modal-capabilities-link" class="modal-project-action">Key Capabilities <svg class="familiar-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg></button>
+        <button type="button" id="modal-workflow-link" class="modal-project-action">View full workflow <svg class="familiar-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="13 6 19 12 13 18"></polyline></svg></button>
+        <button type="button" id="modal-screenshots-link" class="modal-project-action">Explore Screenshots <svg class="familiar-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="13 6 19 12 13 18"></polyline></svg></button>
+        <button type="button" id="modal-capabilities-link" class="modal-project-action">Key Capabilities <svg class="familiar-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="13 6 19 12 13 18"></polyline></svg></button>
       </div>
     </div>
 
@@ -1562,6 +1584,14 @@ body {
 // ============================================
 const navToggle = document.querySelector(".nav-toggle");
 const navLinks = document.getElementById("primary-navigation");
+const siteNav = document.querySelector(".site-nav");
+
+function updateSiteNavHeight() {
+  document.documentElement.style.setProperty("--site-nav-height", siteNav.offsetHeight + "px");
+}
+
+updateSiteNavHeight();
+new ResizeObserver(updateSiteNavHeight).observe(siteNav);
 
 function closeMobileNav() {
   navLinks.classList.remove("open");
@@ -1777,6 +1807,8 @@ projectData.forEach((group) => {
     card.appendChild(tagRow);
 
     card.addEventListener("click", () => openProjectModal(group.category, project));
+    // Pointer activation should not leave a card in its keyboard-focus hover state.
+    card.addEventListener("mousedown", (e) => e.preventDefault());
     card.addEventListener("keydown", (e) => {
       if (e.key === "Enter" || e.key === " ") {
         e.preventDefault();
@@ -1972,15 +2004,32 @@ function openProjectModal(category, project) {
   if (project.workflowPdf) {
     modalWorkflowLink.disabled = false;
     modalWorkflowLink.style.display = "inline-flex";
+    modalMediaImg.classList.add("workflow-link");
+    modalMediaImg.setAttribute("role", "button");
+    modalMediaImg.setAttribute("tabindex", "0");
+    modalMediaImg.setAttribute("aria-label", "View full workflow");
   } else {
     modalWorkflowLink.disabled = true;
     modalWorkflowLink.style.display = "none";
+    modalMediaImg.classList.remove("workflow-link");
+    modalMediaImg.removeAttribute("role");
+    modalMediaImg.removeAttribute("tabindex");
+    modalMediaImg.removeAttribute("aria-label");
   }
 
   projectModal.open();
 }
 
 modalWorkflowLink.addEventListener("click", () => openProjectChild("workflow"));
+modalMediaImg.addEventListener("click", () => {
+  if (activeProject?.workflowPdf) openProjectChild("workflow");
+});
+modalMediaImg.addEventListener("keydown", (e) => {
+  if ((e.key === "Enter" || e.key === " ") && activeProject?.workflowPdf) {
+    e.preventDefault();
+    openProjectChild("workflow");
+  }
+});
 modalScreenshotsLink.addEventListener("click", () => openProjectChild("screenshots"));
 modalCapabilitiesLink.addEventListener("click", () => openProjectChild("capabilities"));
 
@@ -2096,20 +2145,33 @@ function applyMarqueeOffset() {
 function enterMarqueeManualMode() {
   clearTimeout(marqueeResumeTimer);
   if (!marqueeManual) {
+    const transform = getComputedStyle(marqueeTrack).transform;
+    if (transform && transform !== "none") {
+      const matrix = new DOMMatrixReadOnly(transform);
+      marqueeOffset = -matrix.m42;
+    }
     marqueeManual = true;
     marqueeCard.classList.add("manual-scroll");
     marqueeTrack.style.animation = "none";
+    applyMarqueeOffset();
   }
+}
+
+function resumeMarquee() {
+  clearTimeout(marqueeResumeTimer);
+  if (!marqueeManual || marqueeDragging) return;
+  applyMarqueeOffset();
+  const progress = marqueeHalfHeight ? marqueeOffset / marqueeHalfHeight : 0;
+  marqueeTrack.style.animation = "";
+  marqueeTrack.style.animationDelay = (-progress * 34) + "s";
+  marqueeTrack.style.transform = "";
+  marqueeManual = false;
+  marqueeCard.classList.remove("manual-scroll");
 }
 
 function scheduleMarqueeResume() {
   clearTimeout(marqueeResumeTimer);
-  marqueeResumeTimer = setTimeout(() => {
-    marqueeManual = false;
-    marqueeCard.classList.remove("manual-scroll");
-    marqueeTrack.style.animation = "";
-    marqueeTrack.style.transform = "";
-  }, 2200);
+  marqueeResumeTimer = setTimeout(resumeMarquee, 2200);
 }
 
 marqueeCard.addEventListener("wheel", (e) => {
@@ -2146,6 +2208,8 @@ window.addEventListener("mouseup", () => {
   scheduleMarqueeResume();
 });
 
+marqueeCard.addEventListener("mouseleave", resumeMarquee);
+
 // ============================================
 // Email reveal
 // ============================================
@@ -2154,7 +2218,7 @@ emailRevealBtn.addEventListener("click", () => {
   const email = emailRevealBtn.dataset.email;
   const link = document.createElement("a");
   link.href = "mailto:" + email;
-  link.className = "btn btn-solid email-reveal";
+  link.className = "btn btn-outline email-reveal";
   link.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"></rect><path d="m22 7-10 5L2 7"></path></svg>' + email;
   emailRevealBtn.replaceWith(link);
 });
