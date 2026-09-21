@@ -42,6 +42,7 @@
   --radius-lg: 24px;
 
   --max-width: 1232px;
+  --nav-height: 75px;
   --shadow-soft: 0 12px 32px rgba(0, 0, 0, 0.28);
 }
 
@@ -145,6 +146,10 @@ p { margin: 0; }
   transform: translateY(-1px);
 }
 
+.btn-outline {
+  background: transparent;
+}
+
 /* ============================================
    Nav
    ============================================ */
@@ -163,7 +168,8 @@ p { margin: 0; }
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 75px;
+  height: var(--nav-height);
+  position: relative;
 }
 
 .nav-mark {
@@ -191,20 +197,59 @@ p { margin: 0; }
 
 .nav-links a:hover { color: var(--text); }
 
-.nav-toggle { display: none; }
+.nav-toggle {
+  display: none;
+  min-width: 44px;
+  min-height: 44px;
+  padding: 8px 12px;
+  border: 1px solid rgba(245, 245, 240, 0.25);
+  border-radius: var(--radius-sm);
+  background: rgba(245, 245, 240, 0.08);
+  color: var(--text);
+  font: 500 15px/1 var(--font-mono);
+  cursor: pointer;
+}
 
 @media (max-width: 720px) {
-  .nav-links { display: none; }
+  .nav-toggle { display: inline-flex; align-items: center; justify-content: center; }
+
+  .nav-links {
+    display: none;
+    position: absolute;
+    top: calc(100% - 1px);
+    left: 20px;
+    right: 20px;
+    flex-direction: column;
+    gap: 0;
+    padding: 8px;
+    border: 1px solid rgba(245, 245, 240, 0.18);
+    border-radius: 0 0 var(--radius-md) var(--radius-md);
+    background: rgba(44, 45, 46, 0.98);
+    box-shadow: var(--shadow-soft);
+  }
+
+  .nav-links.open { display: flex; }
+
+  .nav-links a {
+    display: block;
+    padding: 12px 14px;
+    border-radius: var(--radius-sm);
+  }
 }
 
 /* ============================================
    Hero
    ============================================ */
 .hero {
+  display: flex;
+  align-items: center;
+  min-height: calc(100vh - var(--nav-height));
+  min-height: calc(100svh - var(--nav-height));
   padding: 106px 0 97px;
 }
 
 .hero .wrap {
+  width: 100%;
   display: grid;
   grid-template-columns: 1.15fr 0.85fr;
   gap: 62px;
@@ -236,7 +281,7 @@ p { margin: 0; }
   top: -60px;
   right: -85px;
   width: 100%;
-  height: 280px;
+  height: 314px;
   background-image: url('workflow-bg-crop.png');
   background-size: cover;
   background-position: center;
@@ -253,7 +298,7 @@ p { margin: 0; }
   bottom: 0px;
   right: 50px;
   width: 100%;
-  height: 280px;  
+  height: 314px;
   background-image: url('workflow-bg-crop.png');
   background-size: cover;
   background-position: 70% 30%;
@@ -295,6 +340,9 @@ p { margin: 0; }
 
 .familiar-arrow {
   flex-shrink: 0;
+  display: inline-flex;
+  width: 14px;
+  line-height: 1;
   transition: transform 0.15s ease;
 }
 
@@ -339,11 +387,7 @@ p { margin: 0; }
 }
 
 .marquee-track {
-  animation: marquee-scroll 34s linear infinite;
-}
-
-.marquee-card:hover .marquee-track {
-  animation-play-state: paused;
+  will-change: transform;
 }
 
 .marquee-card {
@@ -376,15 +420,6 @@ p { margin: 0; }
 .marquee-track li .bullet {
   flex-shrink: 0;
   opacity: 0.85;
-}
-
-@keyframes marquee-scroll {
-  from { transform: translateY(0); }
-  to { transform: translateY(-50%); }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .marquee-track { animation: none; }
 }
 
 @media (max-width: 860px) {
@@ -483,6 +518,8 @@ section { padding: 97px 0; }
 }
 
 .project-card {
+  display: flex;
+  flex-direction: column;
   background: var(--accent-gradient-glass);
   backdrop-filter: var(--glass-blur);
   -webkit-backdrop-filter: var(--glass-blur);
@@ -494,14 +531,12 @@ section { padding: 97px 0; }
   cursor: pointer;
 }
 
-.project-card:hover,
-.project-card:focus-visible {
+.project-card:hover {
   transform: translateY(-3px);
   box-shadow: 0 18px 44px rgba(0, 0, 0, 0.35);
 }
 
-.project-card:hover .project-title-btn,
-.project-card:focus-visible .project-title-btn {
+.project-card:hover .project-title-btn {
   text-decoration: underline;
 }
 
@@ -516,6 +551,7 @@ section { padding: 97px 0; }
 }
 
 .project-tagline {
+  flex: 1;
   color: var(--text-muted);
   font-size: 17px;
   margin-bottom: 20px;
@@ -669,8 +705,20 @@ section { padding: 97px 0; }
 .modal-media-img {
   width: 100%;
   display: block;
+  margin-top: 116px;
   border-radius: var(--radius-md);
   border: 1px solid rgba(245, 245, 240, 0.12);
+  box-shadow: var(--shadow-soft);
+}
+
+.modal-media-img.workflow-clickable {
+  cursor: pointer;
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.modal-media-img.workflow-clickable:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 18px 44px rgba(0, 0, 0, 0.35);
 }
 
 .modal-project-action {
@@ -684,6 +732,8 @@ section { padding: 97px 0; }
   letter-spacing: 0.05em;
   text-transform: uppercase;
   color: var(--text-muted);
+  margin-left: 20px;
+  margin-top: 20px;
   text-decoration: none;
   background: none;
   border: none;
@@ -907,26 +957,7 @@ section { padding: 97px 0; }
    About
    ============================================ */
 #about .wrap {
-  display: grid;
-  grid-template-columns: 242px 1fr;
-  gap: 53px;
-  align-items: start;
-}
-
-.headshot {
-  width: 100%;
-  aspect-ratio: 1;
-  border-radius: var(--radius-lg);
-  background: var(--surface);
-  border: 1px dashed var(--glass-border-color);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: var(--font-mono);
-  font-size: 14px;
-  color: var(--text-muted);
-  text-align: center;
-  padding: 18px;
+  max-width: var(--max-width);
 }
 
 .skills-lead { margin-top: 4px; }
@@ -935,56 +966,6 @@ section { padding: 97px 0; }
 
 .about-copy p { margin-bottom: 20px; font-size: 19px; color: var(--text); }
 .about-copy p:last-child { margin-bottom: 0; }
-
-@media (max-width: 700px) {
-  #about .wrap { grid-template-columns: 1fr; }
-  .headshot { max-width: 176px; }
-}
-
-/* ============================================
-   Currently
-   ============================================ */
-.currently-banner {
-  border-top: 1px solid rgba(245, 245, 240, 0.12);
-  border-bottom: 1px solid rgba(245, 245, 240, 0.12);
-  padding: 40px 0;
-}
-
-.currently-banner .wrap {
-  display: flex;
-  align-items: center;
-  gap: 15px;
-  flex-wrap: wrap;
-}
-
-.status-dot {
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  background: var(--accent-gradient);
-  flex-shrink: 0;
-  position: relative;
-}
-
-.status-dot::after {
-  content: "";
-  position: absolute;
-  inset: -6px;
-  border-radius: 50%;
-  border: 1px solid var(--accent-dark);
-  animation: ping 2.4s ease-out infinite;
-}
-
-@keyframes ping {
-  0% { transform: scale(0.6); opacity: 0.8; }
-  100% { transform: scale(2.2); opacity: 0; }
-}
-
-.currently-banner p {
-  font-family: var(--font-mono);
-  font-size: 17px;
-  color: var(--text);
-}
 
 /* ============================================
    Connect
@@ -1140,6 +1121,249 @@ button:focus-visible {
   outline-offset: 2px;
 }
 
+/* ============================================
+   Responsive refinements
+   ============================================ */
+html,
+body {
+  max-width: 100%;
+  overflow-x: clip;
+}
+
+@media (max-width: 1024px) {
+  .hero .wrap { gap: 42px; }
+  #how-i-work .wrap { gap: 42px; }
+
+  #modal-backdrop .modal-box {
+    width: calc(100vw - 52px);
+  }
+}
+
+@media (max-width: 780px) {
+  .wrap { padding-inline: 24px; }
+  section { padding: 72px 0; }
+  .section-head { margin-bottom: 36px; }
+  .project-title-btn,
+  .project-tagline,
+  .project-result,
+  .modal-box h3,
+  .modal-section p { overflow-wrap: anywhere; }
+  .project-result { max-width: 100%; }
+
+  #modal-backdrop,
+  #project-child-backdrop,
+  #skills-modal-backdrop {
+    padding: 18px;
+    align-items: center;
+  }
+
+  #modal-backdrop .modal-box {
+    grid-template-rows: auto auto;
+    width: 100%;
+    height: auto;
+    max-height: calc(100vh - 36px);
+    max-height: calc(100dvh - 36px);
+    overflow-y: auto;
+  }
+
+  .modal-media {
+    height: auto;
+    min-height: 0;
+    overflow: visible;
+    padding: 20px;
+  }
+
+  .modal-media-img {
+    width: min(100%, 520px);
+    max-height: 34vh;
+    margin: 42px auto 0;
+    object-fit: contain;
+  }
+
+  .modal-media-placeholder {
+    height: auto;
+    min-height: 150px;
+    margin-top: 34px;
+  }
+
+  .modal-project-actions {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    width: 100%;
+    gap: 8px;
+  }
+
+  .modal-project-action {
+    align-items: center;
+    justify-content: center;
+    min-height: 44px;
+    margin: 0;
+    padding: 8px 4px;
+    text-align: center;
+    line-height: 1.25;
+  }
+
+  .modal-body-scroll {
+    height: auto;
+    overflow: visible;
+  }
+
+  .modal-body-inner { padding: 30px 24px; }
+
+  #project-child-backdrop .modal-box,
+  #skills-modal-backdrop .modal-box {
+    width: 100%;
+    max-height: calc(100vh - 36px);
+    max-height: calc(100dvh - 36px);
+  }
+
+  #skills-modal-backdrop .modal-box { padding: 30px 24px; }
+
+  #project-child-backdrop .modal-box {
+    height: calc(100vh - 36px);
+    height: calc(100dvh - 36px);
+  }
+
+  .child-breadcrumb {
+    overflow-wrap: anywhere;
+    margin-bottom: 20px;
+  }
+
+  .carousel-title { font-size: 18px; }
+  .carousel-stage { padding-inline: 50px; }
+  .carousel-arrow { width: 44px; height: 44px; }
+
+  .carousel-dot {
+    position: relative;
+    width: 32px;
+    height: 32px;
+    border: 0;
+    background: transparent;
+  }
+
+  .carousel-dot::before {
+    content: "";
+    position: absolute;
+    inset: 11px;
+    border: 1px solid rgba(245, 245, 240, 0.55);
+    border-radius: 50%;
+  }
+
+  .carousel-dot.active { background: transparent; }
+  .carousel-dot.active::before { background: var(--text); }
+  .carousel-dots { gap: 0; padding-top: 8px; }
+
+  .modal-close {
+    top: 14px;
+    right: 16px;
+    min-width: 44px;
+    min-height: 44px;
+    padding: 8px;
+    z-index: 3;
+  }
+}
+
+@media (max-width: 600px) {
+  :root { --nav-height: 64px; }
+  body { font-size: 17px; }
+  .wrap { padding-inline: 20px; }
+  section { padding: 58px 0; }
+
+  .site-nav .wrap { height: 64px; }
+  .nav-mark { font-size: 16px; }
+
+  .hero { padding: 48px 0 56px; }
+  .hero .wrap { gap: 48px; }
+  .hero h1 { font-size: clamp(34px, 10.5vw, 44px); }
+  .hero-sub { font-size: 18px; margin-bottom: 30px; }
+  .hero-sub br { display: none; }
+  .hero-actions { flex-direction: column; align-items: stretch; }
+  .hero-actions .btn { justify-content: center; width: 100%; }
+
+  .hero-familiar { padding: 24px 0 0; }
+  .hero-familiar::before,
+  .hero-familiar::after {
+    inset-inline: 0;
+    width: 100%;
+    height: 100%;
+    transform: none;
+  }
+  .hero-familiar::before { top: 0; }
+  .hero-familiar::after { bottom: -18px; right: auto; }
+  .marquee-card { height: 286px; margin-left: 0; padding-inline: 20px; }
+  .familiar-label {
+    top: auto;
+    left: auto;
+    margin: 24px 0 0 20px;
+    font-size: 15px;
+  }
+
+  .eyebrow,
+  .category-label { font-size: 19px; }
+  .section-head p,
+  .how-copy p,
+  .about-copy p { font-size: 17px; }
+  .project-category { margin-bottom: 44px; }
+  .project-card { padding: 24px 20px; }
+  .project-title-btn { font-size: 20px; }
+
+  .contact-body { font-size: 18px; }
+  .contact-body br { display: none; }
+  .email-actions { align-items: stretch; flex-direction: column; }
+  .email-actions .btn { justify-content: center; width: 100%; }
+  .contact-links { align-items: flex-start; flex-direction: column; }
+  .contact-links a {
+    max-width: 100%;
+    overflow-wrap: anywhere;
+    padding-block: 8px;
+  }
+
+  footer .wrap { flex-direction: column; }
+}
+
+@media (max-width: 430px) {
+  .wrap { padding-inline: 16px; }
+  .nav-links { left: 16px; right: 16px; }
+  .hero h1 { font-size: clamp(32px, 9.8vw, 40px); }
+
+  #modal-backdrop,
+  #project-child-backdrop,
+  #skills-modal-backdrop { padding: 8px; }
+
+  #modal-backdrop .modal-box,
+  #project-child-backdrop .modal-box,
+  #skills-modal-backdrop .modal-box {
+    max-height: calc(100vh - 16px);
+    max-height: calc(100dvh - 16px);
+    border-radius: var(--radius-md);
+  }
+
+  #project-child-backdrop .modal-box {
+    height: calc(100vh - 16px);
+    height: calc(100dvh - 16px);
+    padding: 24px 12px 16px;
+  }
+
+  #skills-modal-backdrop .modal-box { padding: 26px 18px; }
+
+  .modal-project-actions { grid-template-columns: 1fr; gap: 2px; }
+  .modal-project-action { justify-content: flex-start; padding-inline: 8px; }
+  .modal-body-inner { padding: 26px 18px; }
+  .modal-box h3 { font-size: 23px; padding-right: 52px; }
+  .modal-section p { font-size: 16px; }
+  .modal-media { padding: 14px; }
+  .modal-media-img { margin-top: 46px; max-height: 30vh; }
+
+  .child-breadcrumb { padding-right: 58px; font-size: 12px; }
+  .carousel-stage { padding-inline: 46px; }
+  .carousel-arrow.prev { left: 0; }
+  .carousel-arrow.next { right: 0; }
+  .capabilities-list { padding-left: 20px; font-size: 16px; }
+
+  .tag-row { gap: 7px; }
+  .skill-tag { max-width: 100%; }
+}
+
 </style>
 </head>
 <body>
@@ -1147,7 +1371,8 @@ button:focus-visible {
 <nav class="site-nav">
   <div class="wrap">
     <a href="#top" class="nav-mark">Aaron Estacio</a>
-    <ul class="nav-links">
+    <button type="button" class="nav-toggle" aria-expanded="false" aria-controls="primary-navigation">Menu</button>
+    <ul class="nav-links" id="primary-navigation">
       <li><a href="#projects">Projects</a></li>
       <li><a href="#how-i-work">How I Work</a></li>
       <li><a href="#about">About</a></li>
@@ -1165,7 +1390,7 @@ button:focus-visible {
       <p class="hero-sub">I build automation systems that catch problems<br>before they cost you hours.</p>
       <div class="hero-actions">
         <a href="#projects" class="btn btn-solid">See what I've built</a>
-        <a href="#connect" class="btn">Let's talk about your process</a>
+        <a href="#connect" class="btn btn-outline">Let's talk about your process</a>
       </div>
     </div>
 
@@ -1175,9 +1400,10 @@ button:focus-visible {
  	 </div>
 	  <a href="#connect" class="familiar-label">
 	    Sounds familiar?
-	    <svg class="familiar-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+	    <span class="familiar-arrow" aria-hidden="true">→</span>
 	  </a>
 	</div>
+  </div>
 </header>
 
 <!-- ============ PROJECTS ============ -->
@@ -1210,10 +1436,9 @@ button:focus-visible {
 <!-- ============ ABOUT ============ -->
 <section id="about" class="alt-surface">
   <div class="wrap">
-    <div class="headshot reveal">Headshot placeholder</div>
     <div class="about-copy reveal">
       <span class="eyebrow" style="display:block; margin-bottom:14px;">Background</span>
-      <p>I have a background in Industrial Engineering, which shaped how I approach problems: looking at processes as systems, identifying bottlenecks, eliminating waste, and finding where things break down under pressure.</p>
+      <p>My background as a Certified Industrial Engineer (CIE) shaped how I approach problems: looking at processes as systems, identifying bottlenecks, eliminating waste, and finding where things break down under pressure.</p>
       <p>That way of thinking naturally led me to automation. Across different operations, I kept seeing the same pattern: people spending time on repetitive, error prone work that a well designed system could handle more reliably.</p>
       <p>Now I build those systems end to end, designed around the actual problem, tested before deployment, and focused on improving the process rather than simply adding technology.</p>
       <p class="skills-lead">Aside from automation, here's what else I bring to the table.</p>
@@ -1221,14 +1446,6 @@ button:focus-visible {
     </div>
   </div>
 </section>
-
-<!-- ============ CURRENTLY ============ -->
-<div class="currently-banner">
-  <div class="wrap">
-    <span class="status-dot" aria-hidden="true"></span>
-    <p>Currently building automation systems, and open to new opportunities, freelance or full time.</p>
-  </div>
-</div>
 
 <!-- ============ CONNECT ============ -->
 <section id="connect">
@@ -1238,7 +1455,7 @@ button:focus-visible {
     <p class="contact-body" style="margin-top:18px;">If something above sounds close to a problem you're dealing with,<br>I'd be glad to hear about it.</p>
     <div class="email-actions">
       <a href="mailto:aaron.estacio@outlook.com" class="btn btn-solid">Email me</a>
-      <button type="button" class="btn btn-solid email-reveal" id="email-reveal" data-email="aaron.estacio@outlook.com">
+      <button type="button" class="btn btn-outline email-reveal" id="email-reveal" data-email="aaron.estacio@outlook.com">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"></rect><path d="m22 7-10 5L2 7"></path></svg>
         Click to reveal email address
       </button>
@@ -1267,9 +1484,9 @@ button:focus-visible {
       <img id="modal-media-img" class="modal-media-img" src="" alt="" style="display:none;">
       <div class="modal-media-placeholder" id="modal-media-placeholder">Screenshot placeholder</div>
       <div class="modal-project-actions">
-        <button type="button" id="modal-workflow-link" class="modal-project-action">View full workflow <span aria-hidden="true">↗</span></button>
-        <button type="button" id="modal-screenshots-link" class="modal-project-action">Explore Screenshots <span aria-hidden="true">↗</span></button>
-        <button type="button" id="modal-capabilities-link" class="modal-project-action">Key Capabilities <span aria-hidden="true">↗</span></button>
+        <button type="button" id="modal-workflow-link" class="modal-project-action">View full workflow <span class="familiar-arrow" aria-hidden="true">→</span></button>
+        <button type="button" id="modal-screenshots-link" class="modal-project-action">Explore Screenshots <span class="familiar-arrow" aria-hidden="true">→</span></button>
+        <button type="button" id="modal-capabilities-link" class="modal-project-action">Key Capabilities <span class="familiar-arrow" aria-hidden="true">→</span></button>
       </div>
     </div>
 
@@ -1352,6 +1569,41 @@ button:focus-visible {
 </div>
 
 <script>
+// ============================================
+// Mobile navigation
+// ============================================
+const navToggle = document.querySelector(".nav-toggle");
+const navLinks = document.getElementById("primary-navigation");
+
+function closeMobileNav() {
+  navLinks.classList.remove("open");
+  navToggle.setAttribute("aria-expanded", "false");
+}
+
+navToggle.addEventListener("click", () => {
+  const isOpen = navLinks.classList.toggle("open");
+  navToggle.setAttribute("aria-expanded", String(isOpen));
+});
+
+navLinks.addEventListener("click", (event) => {
+  if (event.target.closest("a")) closeMobileNav();
+});
+
+document.addEventListener("click", (event) => {
+  if (!event.target.closest(".site-nav")) closeMobileNav();
+});
+
+window.addEventListener("resize", () => {
+  if (window.innerWidth > 720) closeMobileNav();
+});
+
+document.addEventListener("keydown", (event) => {
+  if (event.key === "Escape" && navLinks.classList.contains("open")) {
+    closeMobileNav();
+    navToggle.focus();
+  }
+});
+
 // ============================================
 // Project data, edit this to add/update projects.
 // Each project renders as a card; clicking anywhere on the card opens the modal.
@@ -1456,7 +1708,7 @@ const projectDetails = {
     screenshots: [
       { src: "Lead-form_The-trigger.png", label: "Lead form (The trigger)" },
       { src: "Execution logs 1.png", label: "Execution logs" },
-      { src: "executions log 2.png", label: "Executions log 2" },
+      { src: "executions log 2.png", label: "Welcome email" },
       { src: "Lead contact field summary.png", label: "Lead contact field summary" }
     ],
     capabilities: [
@@ -1732,9 +1984,17 @@ function openProjectModal(category, project) {
   if (project.workflowPdf) {
     modalWorkflowLink.disabled = false;
     modalWorkflowLink.style.display = "inline-flex";
+    modalMediaImg.classList.add("workflow-clickable");
+    modalMediaImg.tabIndex = 0;
+    modalMediaImg.setAttribute("role", "button");
+    modalMediaImg.setAttribute("aria-label", `View full workflow for ${project.title}`);
   } else {
     modalWorkflowLink.disabled = true;
     modalWorkflowLink.style.display = "none";
+    modalMediaImg.classList.remove("workflow-clickable");
+    modalMediaImg.removeAttribute("tabindex");
+    modalMediaImg.removeAttribute("role");
+    modalMediaImg.removeAttribute("aria-label");
   }
 
   projectModal.open();
@@ -1743,6 +2003,15 @@ function openProjectModal(category, project) {
 modalWorkflowLink.addEventListener("click", () => openProjectChild("workflow"));
 modalScreenshotsLink.addEventListener("click", () => openProjectChild("screenshots"));
 modalCapabilitiesLink.addEventListener("click", () => openProjectChild("capabilities"));
+modalMediaImg.addEventListener("click", () => {
+  if (activeProject?.workflowPdf) openProjectChild("workflow");
+});
+modalMediaImg.addEventListener("keydown", (event) => {
+  if (activeProject?.workflowPdf && (event.key === "Enter" || event.key === " ")) {
+    event.preventDefault();
+    openProjectChild("workflow");
+  }
+});
 
 // ============================================
 // Skills modal trigger
@@ -1830,21 +2099,27 @@ secondList.setAttribute("aria-hidden", "true");
 marqueeTrack.appendChild(secondList);
 
 // ============================================
-// Marquee manual scroll (mouse wheel + click-drag)
-// Pauses the CSS auto-scroll while the user interacts,
-// then hands control back to the animation after a short pause.
+// Marquee auto-scroll + manual scroll (mouse wheel and click-drag).
+// JavaScript owns the shared offset so manual interaction can hand off
+// without snapping back to the beginning of the CSS animation.
 // ============================================
 const marqueeCard = document.querySelector(".marquee-card");
 let marqueeOffset = 0;
 let marqueeHalfHeight = 0;
 let marqueeManual = false;
-let marqueeResumeTimer = null;
+let marqueeHovered = false;
+let marqueeLastFrame = null;
+const marqueeLoopDuration = 34000;
+const reduceMarqueeMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 
 function updateMarqueeHalfHeight() {
   marqueeHalfHeight = marqueeTrack.scrollHeight / 2;
 }
 updateMarqueeHalfHeight();
-window.addEventListener("resize", updateMarqueeHalfHeight);
+window.addEventListener("resize", () => {
+  updateMarqueeHalfHeight();
+  applyMarqueeOffset();
+});
 
 function applyMarqueeOffset() {
   if (marqueeHalfHeight > 0) {
@@ -1854,30 +2129,41 @@ function applyMarqueeOffset() {
 }
 
 function enterMarqueeManualMode() {
-  clearTimeout(marqueeResumeTimer);
-  if (!marqueeManual) {
-    marqueeManual = true;
-    marqueeCard.classList.add("manual-scroll");
-    marqueeTrack.style.animation = "none";
-  }
+  marqueeManual = true;
+  marqueeCard.classList.add("manual-scroll");
 }
 
-function scheduleMarqueeResume() {
-  clearTimeout(marqueeResumeTimer);
-  marqueeResumeTimer = setTimeout(() => {
-    marqueeManual = false;
-    marqueeCard.classList.remove("manual-scroll");
-    marqueeTrack.style.animation = "";
-    marqueeTrack.style.transform = "";
-  }, 2200);
+function leaveMarqueeManualMode() {
+  marqueeManual = false;
+  marqueeCard.classList.remove("manual-scroll");
 }
+
+function animateMarquee(timestamp) {
+  if (marqueeLastFrame === null) marqueeLastFrame = timestamp;
+  const elapsed = Math.min(timestamp - marqueeLastFrame, 50);
+  marqueeLastFrame = timestamp;
+
+  if (!reduceMarqueeMotion.matches && !marqueeManual && !marqueeHovered && !marqueeDragging && marqueeHalfHeight > 0) {
+    marqueeOffset += (marqueeHalfHeight / marqueeLoopDuration) * elapsed;
+    applyMarqueeOffset();
+  }
+
+  window.requestAnimationFrame(animateMarquee);
+}
+
+window.requestAnimationFrame(animateMarquee);
+
+marqueeCard.addEventListener("mouseenter", () => { marqueeHovered = true; });
+marqueeCard.addEventListener("mouseleave", () => {
+  marqueeHovered = false;
+  if (!marqueeDragging) leaveMarqueeManualMode();
+});
 
 marqueeCard.addEventListener("wheel", (e) => {
   e.preventDefault();
   enterMarqueeManualMode();
   marqueeOffset += e.deltaY;
   applyMarqueeOffset();
-  scheduleMarqueeResume();
 }, { passive: false });
 
 let marqueeDragging = false;
@@ -1903,7 +2189,7 @@ window.addEventListener("mouseup", () => {
   if (!marqueeDragging) return;
   marqueeDragging = false;
   marqueeCard.classList.remove("dragging");
-  scheduleMarqueeResume();
+  if (!marqueeHovered) leaveMarqueeManualMode();
 });
 
 // ============================================
@@ -1914,7 +2200,7 @@ emailRevealBtn.addEventListener("click", () => {
   const email = emailRevealBtn.dataset.email;
   const link = document.createElement("a");
   link.href = "mailto:" + email;
-  link.className = "btn btn-solid email-reveal";
+  link.className = "btn btn-outline email-reveal";
   link.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"></rect><path d="m22 7-10 5L2 7"></path></svg>' + email;
   emailRevealBtn.replaceWith(link);
 });
@@ -1940,5 +2226,6 @@ if ("IntersectionObserver" in window) {
 }
 
 </script>
+<script defer src="/_vercel/insights/script.js"></script>
 </body>
 </html>
