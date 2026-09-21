@@ -164,6 +164,7 @@ p { margin: 0; }
   align-items: center;
   justify-content: space-between;
   height: 75px;
+  position: relative;
 }
 
 .nav-mark {
@@ -191,10 +192,44 @@ p { margin: 0; }
 
 .nav-links a:hover { color: var(--text); }
 
-.nav-toggle { display: none; }
+.nav-toggle {
+  display: none;
+  min-width: 44px;
+  min-height: 44px;
+  padding: 8px 12px;
+  border: 1px solid rgba(245, 245, 240, 0.25);
+  border-radius: var(--radius-sm);
+  background: rgba(245, 245, 240, 0.08);
+  color: var(--text);
+  font: 500 15px/1 var(--font-mono);
+  cursor: pointer;
+}
 
 @media (max-width: 720px) {
-  .nav-links { display: none; }
+  .nav-toggle { display: inline-flex; align-items: center; justify-content: center; }
+
+  .nav-links {
+    display: none;
+    position: absolute;
+    top: calc(100% - 1px);
+    left: 20px;
+    right: 20px;
+    flex-direction: column;
+    gap: 0;
+    padding: 8px;
+    border: 1px solid rgba(245, 245, 240, 0.18);
+    border-radius: 0 0 var(--radius-md) var(--radius-md);
+    background: rgba(44, 45, 46, 0.98);
+    box-shadow: var(--shadow-soft);
+  }
+
+  .nav-links.open { display: flex; }
+
+  .nav-links a {
+    display: block;
+    padding: 12px 14px;
+    border-radius: var(--radius-sm);
+  }
 }
 
 /* ============================================
@@ -1075,6 +1110,248 @@ button:focus-visible {
   outline-offset: 2px;
 }
 
+/* ============================================
+   Responsive refinements
+   ============================================ */
+html,
+body {
+  max-width: 100%;
+  overflow-x: clip;
+}
+
+@media (max-width: 1024px) {
+  .hero .wrap { gap: 42px; }
+  #how-i-work .wrap { gap: 42px; }
+
+  #modal-backdrop .modal-box {
+    width: calc(100vw - 52px);
+  }
+}
+
+@media (max-width: 780px) {
+  .wrap { padding-inline: 24px; }
+  section { padding: 72px 0; }
+  .section-head { margin-bottom: 36px; }
+  .project-title-btn,
+  .project-tagline,
+  .project-result,
+  .modal-box h3,
+  .modal-section p { overflow-wrap: anywhere; }
+  .project-result { max-width: 100%; }
+
+  #modal-backdrop,
+  #project-child-backdrop,
+  #skills-modal-backdrop {
+    padding: 18px;
+    align-items: center;
+  }
+
+  #modal-backdrop .modal-box {
+    grid-template-rows: auto auto;
+    width: 100%;
+    height: auto;
+    max-height: calc(100vh - 36px);
+    max-height: calc(100dvh - 36px);
+    overflow-y: auto;
+  }
+
+  .modal-media {
+    height: auto;
+    min-height: 0;
+    overflow: visible;
+    padding: 20px;
+  }
+
+  .modal-media-img {
+    width: min(100%, 520px);
+    max-height: 34vh;
+    margin: 42px auto 0;
+    object-fit: contain;
+  }
+
+  .modal-media-placeholder {
+    height: auto;
+    min-height: 150px;
+    margin-top: 34px;
+  }
+
+  .modal-project-actions {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    width: 100%;
+    gap: 8px;
+  }
+
+  .modal-project-action {
+    align-items: center;
+    justify-content: center;
+    min-height: 44px;
+    margin: 0;
+    padding: 8px 4px;
+    text-align: center;
+    line-height: 1.25;
+  }
+
+  .modal-body-scroll {
+    height: auto;
+    overflow: visible;
+  }
+
+  .modal-body-inner { padding: 30px 24px; }
+
+  #project-child-backdrop .modal-box,
+  #skills-modal-backdrop .modal-box {
+    width: 100%;
+    max-height: calc(100vh - 36px);
+    max-height: calc(100dvh - 36px);
+  }
+
+  #skills-modal-backdrop .modal-box { padding: 30px 24px; }
+
+  #project-child-backdrop .modal-box {
+    height: calc(100vh - 36px);
+    height: calc(100dvh - 36px);
+  }
+
+  .child-breadcrumb {
+    overflow-wrap: anywhere;
+    margin-bottom: 20px;
+  }
+
+  .carousel-title { font-size: 18px; }
+  .carousel-stage { padding-inline: 50px; }
+  .carousel-arrow { width: 44px; height: 44px; }
+
+  .carousel-dot {
+    position: relative;
+    width: 32px;
+    height: 32px;
+    border: 0;
+    background: transparent;
+  }
+
+  .carousel-dot::before {
+    content: "";
+    position: absolute;
+    inset: 11px;
+    border: 1px solid rgba(245, 245, 240, 0.55);
+    border-radius: 50%;
+  }
+
+  .carousel-dot.active { background: transparent; }
+  .carousel-dot.active::before { background: var(--text); }
+  .carousel-dots { gap: 0; padding-top: 8px; }
+
+  .modal-close {
+    top: 14px;
+    right: 16px;
+    min-width: 44px;
+    min-height: 44px;
+    padding: 8px;
+    z-index: 3;
+  }
+}
+
+@media (max-width: 600px) {
+  body { font-size: 17px; }
+  .wrap { padding-inline: 20px; }
+  section { padding: 58px 0; }
+
+  .site-nav .wrap { height: 64px; }
+  .nav-mark { font-size: 16px; }
+
+  .hero { padding: 48px 0 56px; }
+  .hero .wrap { gap: 48px; }
+  .hero h1 { font-size: clamp(34px, 10.5vw, 44px); }
+  .hero-sub { font-size: 18px; margin-bottom: 30px; }
+  .hero-sub br { display: none; }
+  .hero-actions { flex-direction: column; align-items: stretch; }
+  .hero-actions .btn { justify-content: center; width: 100%; }
+
+  .hero-familiar { padding: 24px 0 0; }
+  .hero-familiar::before,
+  .hero-familiar::after {
+    inset-inline: 0;
+    width: 100%;
+    height: 100%;
+    transform: none;
+  }
+  .hero-familiar::before { top: 0; }
+  .hero-familiar::after { bottom: -18px; right: auto; }
+  .marquee-card { height: 286px; margin-left: 0; padding-inline: 20px; }
+  .familiar-label {
+    top: auto;
+    left: auto;
+    margin: 24px 0 0 20px;
+    font-size: 15px;
+  }
+
+  .eyebrow,
+  .category-label { font-size: 19px; }
+  .section-head p,
+  .how-copy p,
+  .about-copy p { font-size: 17px; }
+  .project-category { margin-bottom: 44px; }
+  .project-card { padding: 24px 20px; }
+  .project-title-btn { font-size: 20px; }
+
+  .contact-body { font-size: 18px; }
+  .contact-body br { display: none; }
+  .email-actions { align-items: stretch; flex-direction: column; }
+  .email-actions .btn { justify-content: center; width: 100%; }
+  .contact-links { align-items: flex-start; flex-direction: column; }
+  .contact-links a {
+    max-width: 100%;
+    overflow-wrap: anywhere;
+    padding-block: 8px;
+  }
+
+  footer .wrap { flex-direction: column; }
+}
+
+@media (max-width: 430px) {
+  .wrap { padding-inline: 16px; }
+  .nav-links { left: 16px; right: 16px; }
+  .hero h1 { font-size: clamp(32px, 9.8vw, 40px); }
+
+  #modal-backdrop,
+  #project-child-backdrop,
+  #skills-modal-backdrop { padding: 8px; }
+
+  #modal-backdrop .modal-box,
+  #project-child-backdrop .modal-box,
+  #skills-modal-backdrop .modal-box {
+    max-height: calc(100vh - 16px);
+    max-height: calc(100dvh - 16px);
+    border-radius: var(--radius-md);
+  }
+
+  #project-child-backdrop .modal-box {
+    height: calc(100vh - 16px);
+    height: calc(100dvh - 16px);
+    padding: 24px 12px 16px;
+  }
+
+  #skills-modal-backdrop .modal-box { padding: 26px 18px; }
+
+  .modal-project-actions { grid-template-columns: 1fr; gap: 2px; }
+  .modal-project-action { justify-content: flex-start; padding-inline: 8px; }
+  .modal-body-inner { padding: 26px 18px; }
+  .modal-box h3 { font-size: 23px; padding-right: 52px; }
+  .modal-section p { font-size: 16px; }
+  .modal-media { padding: 14px; }
+  .modal-media-img { margin-top: 46px; max-height: 30vh; }
+
+  .child-breadcrumb { padding-right: 58px; font-size: 12px; }
+  .carousel-stage { padding-inline: 46px; }
+  .carousel-arrow.prev { left: 0; }
+  .carousel-arrow.next { right: 0; }
+  .capabilities-list { padding-left: 20px; font-size: 16px; }
+
+  .tag-row { gap: 7px; }
+  .skill-tag { max-width: 100%; }
+}
+
 </style>
 </head>
 <body>
@@ -1082,7 +1359,8 @@ button:focus-visible {
 <nav class="site-nav">
   <div class="wrap">
     <a href="#top" class="nav-mark">Aaron Estacio</a>
-    <ul class="nav-links">
+    <button type="button" class="nav-toggle" aria-expanded="false" aria-controls="primary-navigation">Menu</button>
+    <ul class="nav-links" id="primary-navigation">
       <li><a href="#projects">Projects</a></li>
       <li><a href="#how-i-work">How I Work</a></li>
       <li><a href="#about">About</a></li>
@@ -1279,6 +1557,41 @@ button:focus-visible {
 </div>
 
 <script>
+// ============================================
+// Mobile navigation
+// ============================================
+const navToggle = document.querySelector(".nav-toggle");
+const navLinks = document.getElementById("primary-navigation");
+
+function closeMobileNav() {
+  navLinks.classList.remove("open");
+  navToggle.setAttribute("aria-expanded", "false");
+}
+
+navToggle.addEventListener("click", () => {
+  const isOpen = navLinks.classList.toggle("open");
+  navToggle.setAttribute("aria-expanded", String(isOpen));
+});
+
+navLinks.addEventListener("click", (event) => {
+  if (event.target.closest("a")) closeMobileNav();
+});
+
+document.addEventListener("click", (event) => {
+  if (!event.target.closest(".site-nav")) closeMobileNav();
+});
+
+window.addEventListener("resize", () => {
+  if (window.innerWidth > 720) closeMobileNav();
+});
+
+document.addEventListener("keydown", (event) => {
+  if (event.key === "Escape" && navLinks.classList.contains("open")) {
+    closeMobileNav();
+    navToggle.focus();
+  }
+});
+
 // ============================================
 // Project data, edit this to add/update projects.
 // Each project renders as a card; clicking anywhere on the card opens the modal.
