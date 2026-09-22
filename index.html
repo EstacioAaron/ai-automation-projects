@@ -3,8 +3,18 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Aaron Estacio, Industrial Engineer / AI Automation Specialist</title>
-<meta name="description" content="I build automation systems that catch problems before they cost you hours, using AI, n8n, and the right tool for each job.">
+<title>Aaron Estacio | AI Workflow Automation</title>
+<meta name="description" content="Automation that solves the problem, not just the task.">
+<link rel="canonical" href="https://estacioaaron.github.io/ai-automation-projects/">
+<meta property="og:title" content="Aaron Estacio | AI Workflow Automation">
+<meta property="og:description" content="Automation that solves the problem, not just the task.">
+<meta property="og:image" content="https://estacioaaron.github.io/ai-automation-projects/social-preview.png">
+<meta property="og:url" content="https://estacioaaron.github.io/ai-automation-projects/">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Aaron Estacio | AI Workflow Automation">
+<meta name="twitter:description" content="Automation that solves the problem, not just the task.">
+<meta name="twitter:image" content="https://estacioaaron.github.io/ai-automation-projects/social-preview.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Rethink+Sans:wght@400;500;700&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
@@ -49,6 +59,18 @@
 
 html {
   scroll-behavior: smooth;
+}
+
+html.modal-open {
+  overflow: hidden;
+  overscroll-behavior: none;
+}
+
+body.modal-open {
+  position: fixed;
+  width: 100%;
+  overflow: hidden;
+  overscroll-behavior: none;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -143,6 +165,14 @@ p { margin: 0; }
 
 .btn-solid:hover {
   transform: translateY(-1px);
+}
+
+.hero-actions .btn-solid {
+  box-shadow: none;
+}
+
+.hero-actions .btn-solid:hover {
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.32);
 }
 
 .btn-outline {
@@ -1494,7 +1524,7 @@ body {
       <img id="modal-media-img" class="modal-media-img" src="" alt="" style="display:none;">
       <div class="modal-media-placeholder" id="modal-media-placeholder">Screenshot placeholder</div>
       <div class="modal-project-actions">
-        <button type="button" id="modal-workflow-link" class="modal-project-action">View full workflow <svg class="familiar-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="13 6 19 12 13 18"></polyline></svg></button>
+        <button type="button" id="modal-workflow-link" class="modal-project-action">View full workflow <svg class="familiar-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="19" x2="19" y2="5"></line><polyline points="9 5 19 5 19 15"></polyline></svg></button>
         <button type="button" id="modal-screenshots-link" class="modal-project-action">Explore Screenshots <svg class="familiar-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="13 6 19 12 13 18"></polyline></svg></button>
         <button type="button" id="modal-capabilities-link" class="modal-project-action">Key Capabilities <svg class="familiar-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="13 6 19 12 13 18"></polyline></svg></button>
       </div>
@@ -1725,8 +1755,9 @@ const projectDetails = {
   "Speed to Lead SLA Enforcer": {
     screenshots: [
       { src: "Lead-form_The-trigger.png", label: "Lead form (The trigger)" },
-      { src: "Execution logs 1.png", label: "Execution logs" },
-      { src: "executions log 2.png", label: "Welcome email" },
+      { src: "executions log 2.png", label: "Execution logs 1" },
+      { src: "Execution logs 1.png", label: "Execution logs 2" },
+      { src: "welcome_email.png", label: "Welcome email" },
       { src: "Lead contact field summary.png", label: "Lead contact field summary" }
     ],
     capabilities: [
@@ -1826,6 +1857,25 @@ projectData.forEach((group) => {
 // ============================================
 // Generic modal open/close (shared pattern for project + skills modals)
 // ============================================
+const openModals = new Set();
+let pageScrollY = 0;
+
+function syncPageScrollLock() {
+  const shouldLock = openModals.size > 0;
+
+  if (shouldLock && !document.documentElement.classList.contains("modal-open")) {
+    pageScrollY = window.scrollY;
+    document.documentElement.classList.add("modal-open");
+    document.body.classList.add("modal-open");
+    document.body.style.top = `-${pageScrollY}px`;
+  } else if (!shouldLock && document.documentElement.classList.contains("modal-open")) {
+    document.documentElement.classList.remove("modal-open");
+    document.body.classList.remove("modal-open");
+    document.body.style.top = "";
+    window.scrollTo(0, pageScrollY);
+  }
+}
+
 function setupModal(backdropId, closeId) {
   const backdrop = document.getElementById(backdropId);
   const closeBtn = document.getElementById(closeId);
@@ -1834,13 +1884,15 @@ function setupModal(backdropId, closeId) {
   function open() {
     lastFocusedEl = document.activeElement;
     backdrop.classList.add("open");
-    document.body.style.overflow = "hidden";
+    openModals.add(backdrop);
+    syncPageScrollLock();
     closeBtn.focus();
   }
 
   function close() {
     backdrop.classList.remove("open");
-    document.body.style.overflow = document.querySelector(".modal-backdrop.open") ? "hidden" : "";
+    openModals.delete(backdrop);
+    syncPageScrollLock();
     if (lastFocusedEl) lastFocusedEl.focus();
   }
 
@@ -2046,6 +2098,8 @@ document.getElementById("open-skills").addEventListener("click", () => skillsMod
 const toolPillData = [
   { name: "n8n", slug: "n8n" },
   { name: "Zapier", slug: "zapier" },
+  { name: "Codex", slug: "openai" },
+  { name: "Claude Code", slug: "anthropic" },
   { name: "GHL (automation)", localSrc: "ghl-logo.png" },
   { name: "Microsoft 365", localSrc: "m365-logo.png" },
   { name: "Google Workspace", localSrc: "google-workspace-logo.png" },
