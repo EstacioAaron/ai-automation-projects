@@ -612,7 +612,7 @@ section { padding: 97px 0; }
 
 .tag-row { display: flex; flex-wrap: wrap; gap: 9px; }
 
-.tag-row span {
+.tag-row > span:not(.tool-pill) {
   font-family: var(--font-mono);
   font-size: 13px;
   color: var(--text-muted);
@@ -755,6 +755,13 @@ section { padding: 97px 0; }
 
 .modal-media-img.workflow-link {
   cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.modal-media-img.workflow-link:hover,
+.modal-media-img.workflow-link:focus-visible {
+  transform: translateY(-3px);
+  box-shadow: 0 18px 44px rgba(0, 0, 0, 0.35);
 }
 
 .modal-media-img.workflow-link:focus-visible {
@@ -1049,6 +1056,14 @@ section { padding: 97px 0; }
 .contact-links a:hover {
   color: var(--text);
   border-color: var(--text);
+}
+
+.email-actions > .btn-solid {
+  box-shadow: none;
+}
+
+.email-actions > .btn-solid:hover {
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.32);
 }
 
 .link-with-icon {
@@ -1508,6 +1523,10 @@ body {
       <a href="https://github.com/EstacioAaron/ai-automation-projects" target="_blank" rel="noopener" class="link-with-icon">
         <svg class="link-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
         github.com/EstacioAaron
+      </a>
+      <a href="https://openai.com/codex/" target="_blank" rel="noopener" class="link-with-icon">
+        <svg class="link-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 1.5a5.5 5.5 0 0 0-5.29 3.98A5.5 5.5 0 0 0 2.5 10.5c0 .74.15 1.45.42 2.1A5.5 5.5 0 0 0 6.7 21a5.5 5.5 0 0 0 5.3-3.98A5.5 5.5 0 0 0 17.3 21a5.5 5.5 0 0 0 3.78-8.4 5.5 5.5 0 0 0-4.21-7.12A5.5 5.5 0 0 0 12 1.5Zm0 2.2a3.3 3.3 0 0 1 3.18 2.43L12 8.02 8.82 6.13A3.3 3.3 0 0 1 12 3.7Zm-7.3 8.1a3.3 3.3 0 0 1 3.31-3.3l3.17 1.88v3.78l-3.17 1.88A3.3 3.3 0 0 1 4.7 11.8Zm7.3 8.5a3.3 3.3 0 0 1-3.18-2.43L12 15.98l3.18 1.89A3.3 3.3 0 0 1 12 20.3Zm1.1-7.4V9.7L16.27 7.8a3.3 3.3 0 0 1 0 6.6L13.1 12.9Z"/></svg>
+        Codex
       </a>
     </div>
   </div>
