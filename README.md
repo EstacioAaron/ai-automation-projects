@@ -23,7 +23,7 @@ An AI-powered email classification agent that interprets supplier responses, cla
 
 📄 [Full write-up](https://broadleaf-soapwort-c9a.notion.site/AI-Driven-Supplier-Response-Automation-System-3ac82207a57680aebfc8f314f597287b)
 
-🤖 [Download full workflow diagram (PDF)](https://raw.githubusercontent.com/EstacioAaron/ai-automation-projects/main/AI-Driven_Supplier_Response_Automation_System/Workflow_Full_Image.pdf)
+🤖 [Download full workflow diagram (PDF)](https://raw.githubusercontent.com/EstacioAaron/ai-automation-projects/main/projects/supplier-response-automation/Workflow_Full_Image.pdf)
 
 <details>
 <summary>📸 View screenshots</summary>
@@ -32,30 +32,30 @@ An AI-powered email classification agent that interprets supplier responses, cla
 **System Architecture Diagram**
 <br>
 
-<img src="AI-Driven_Supplier_Response_Automation_System/System_Architecture_Diagram.png" width="400"/>
+<img src="projects/supplier-response-automation/System_Architecture_Diagram.png" width="400"/>
 <br><br>
 
 **Supplier's actual email**
 <br>
 
-<img src="AI-Driven_Supplier_Response_Automation_System/Supplier_Actual_Email.png" width="400"/>
+<img src="projects/supplier-response-automation/Supplier_Actual_Email.png" width="400"/>
 <br><br>
 
 **Updated PO line items**
 <br>
 
-<img src="AI-Driven_Supplier_Response_Automation_System/Final_PO_Line_Items_Updates.png" width="400"/>
+<img src="projects/supplier-response-automation/Final_PO_Line_Items_Updates.png" width="400"/>
 <br><br>
 
 **Newly replaced PO**
 <br>
 
-<img src="AI-Driven_Supplier_Response_Automation_System/Newly_Replace_PO.png" width="400"/>
+<img src="projects/supplier-response-automation/Newly_Replace_PO.png" width="400"/>
 
 **Final email sent to supplier**
 <br>
 
-<img src="AI-Driven_Supplier_Response_Automation_System/Final_Email_to_Supplier.png" width="400"/>
+<img src="projects/supplier-response-automation/Final_Email_to_Supplier.png" width="400"/>
 <br><br>
 
 </details>
