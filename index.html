@@ -2327,6 +2327,10 @@ if ("IntersectionObserver" in window) {
   revealEls.forEach(el => el.classList.add("in-view"));
 }
 
+<script>
+  window.va = window.va || function () {
+    (window.vaq = window.vaq || []).push(arguments);
+  };
 </script>
 <script defer src="/_vercel/insights/script.js"></script>
 </body>
