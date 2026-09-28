@@ -498,8 +498,13 @@ section { padding: 97px 0; }
    ============================================ */
 #how-i-work .wrap {
   display: grid;
-  grid-template-columns: 0.8fr 1.2fr;
+  grid-template-columns: 1.2fr 0.8fr;
   gap: 62px;
+}
+
+.how-copy .section-head {
+  max-width: 100%;
+  margin-bottom: 24px;
 }
 
 .how-copy p {
@@ -560,17 +565,20 @@ section { padding: 97px 0; }
   position: absolute;
   top: 3px;
   bottom: 7px;
-  left: 50%;
-  border-left: 1px solid rgba(245, 245, 240, 0.7);
+  left: calc(50% - 1px);
+  width: 2px;
+  background: rgba(245, 245, 240, 0.7);
 }
 
 .process-connector::after {
   content: "";
   position: absolute;
   bottom: 2px;
-  left: calc(50% - 4px);
-  border: 4px solid transparent;
-  border-top-color: rgba(245, 245, 240, 0.9);
+  left: calc(50% - 4.5px);
+  width: 9px;
+  height: 7px;
+  background: rgba(245, 245, 240, 0.9);
+  clip-path: polygon(0 0, 100% 0, 50% 100%);
 }
 
 .process-loop {
@@ -612,7 +620,7 @@ section { padding: 97px 0; }
   gap: 12px;
   margin-top: 26px;
   width: calc(100% - 54px);
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
 }
 
 .process-caption {
@@ -627,6 +635,7 @@ section { padding: 97px 0; }
   font-family: var(--font-mono);
   font-size: 14px;
   line-height: 1.2;
+  white-space: nowrap;
 }
 
 .process-swatch {
@@ -654,6 +663,7 @@ section { padding: 97px 0; }
 @media (max-width: 480px) {
   .process-loop-label { font-size: 12px; }
   .process-caption { font-size: 12px; }
+  .process-captions { flex-wrap: wrap; }
 }
 
 /* ============================================
@@ -1632,16 +1642,7 @@ body {
 
 <!-- ============ HOW I WORK ============ -->
 <section id="how-i-work">
-  <div class="wrap">
-    <div class="section-head reveal" style="max-width:100%; margin-bottom:0;">
-      <span class="eyebrow">How I Work</span>
-    </div>
-  </div>
   <div class="wrap" style="padding-top:24px;">
-    <div class="how-copy reveal">
-      <p>I approach automation through the lens of an Industrial Engineer. I treat a workflow as a system: I observe how the work really happens, measure it, and cut unnecessary steps before automating anything. Repetitive tasks go to the system, judgment calls stay with people, and exceptions get a defined path.</p>
-      <p>Before anything goes live, I test it with real data, including the edge cases. Then I pilot it small, compare against the baseline, and keep monitoring after launch, because processes drift.</p>
-    </div>
     <div class="process-flow reveal" aria-label="Automation process flow">
       <div class="process-steps">
         <div class="process-step fix-process">Observe</div>
@@ -1667,6 +1668,13 @@ body {
         <span class="process-caption"><span class="process-swatch fix-process" aria-hidden="true"></span>Fix the process</span>
         <span class="process-caption"><span class="process-swatch automate-run" aria-hidden="true"></span>Automate and run</span>
       </div>
+    </div>
+    <div class="how-copy reveal">
+      <div class="section-head">
+        <span class="eyebrow">How I Work</span>
+      </div>
+      <p>I approach automation through the lens of an Industrial Engineer. I treat a workflow as a system: I observe how the work really happens, measure it, and cut unnecessary steps before automating anything. Repetitive tasks go to the system, judgment calls stay with people, and exceptions get a defined path.</p>
+      <p>Before anything goes live, I test it with real data, including the edge cases. Then I pilot it small, compare against the baseline, and keep monitoring after launch, because processes drift.</p>
     </div>
   </div>
 </section>
