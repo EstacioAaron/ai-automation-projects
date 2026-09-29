@@ -502,9 +502,9 @@ section { padding: 97px 0; }
   gap: 62px;
 }
 
-.how-copy .section-head {
-  max-width: 100%;
-  margin-bottom: 24px;
+.approach-label {
+  display: block;
+  margin-bottom: 14px;
 }
 
 .how-copy p {
@@ -547,13 +547,6 @@ section { padding: 97px 0; }
   font-weight: 700;
   line-height: 1.2;
 }
-
-.process-step.fix-process {
-  background: transparent;
-  box-shadow: none;
-}
-
-.process-step.automate-run { background: var(--accent-gradient-glass); }
 
 .process-connector {
   position: relative;
@@ -613,48 +606,6 @@ section { padding: 97px 0; }
   transform-origin: right center;
 }
 
-.process-captions {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 12px;
-  margin-top: 26px;
-  width: calc(100% - 54px);
-  flex-wrap: nowrap;
-}
-
-.process-caption {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 0;
-  border: 0;
-  border-radius: 0;
-  background: none;
-  color: var(--text-muted);
-  font-family: var(--font-mono);
-  font-size: 14px;
-  line-height: 1.2;
-  white-space: nowrap;
-}
-
-.process-swatch {
-  width: 10px;
-  height: 10px;
-  flex: 0 0 10px;
-  border-radius: 2px;
-}
-
-.process-swatch.fix-process {
-  background: var(--bg-2);
-  border: 1px solid rgba(245, 245, 240, 0.45);
-}
-
-.process-swatch.automate-run {
-  background: var(--accent-gradient-glass);
-  border: 1px solid var(--glass-border-color);
-}
-
 @media (max-width: 820px) {
   #how-i-work .wrap { grid-template-columns: 1fr; gap: 31px; }
   .process-flow { max-width: 430px; }
@@ -662,8 +613,6 @@ section { padding: 97px 0; }
 
 @media (max-width: 480px) {
   .process-loop-label { font-size: 12px; }
-  .process-caption { font-size: 12px; }
-  .process-captions { flex-wrap: wrap; }
 }
 
 /* ============================================
@@ -1177,7 +1126,12 @@ section { padding: 97px 0; }
 /* ============================================
    Connect
    ============================================ */
-#connect { text-align: left; }
+#connect {
+  text-align: left;
+  background: var(--bg-gradient);
+  background-size: cover;
+  background-repeat: no-repeat;
+}
 
 #connect h2 { margin-bottom: 20px; }
 
@@ -1596,7 +1550,7 @@ body {
     <button type="button" class="nav-toggle" aria-expanded="false" aria-controls="primary-navigation">Menu</button>
     <ul class="nav-links" id="primary-navigation">
       <li><a href="#projects">Projects</a></li>
-      <li><a href="#how-i-work">How I Work</a></li>
+      <li><a href="#how-i-work">Approach</a></li>
       <li><a href="#about">About</a></li>
       <li><a href="#connect">Connect</a></li>
     </ul>
@@ -1645,34 +1599,29 @@ body {
   <div class="wrap" style="padding-top:24px;">
     <div class="process-flow reveal" aria-label="Automation process flow">
       <div class="process-steps">
-        <div class="process-step fix-process">Observe</div>
+        <div class="process-step">Observe</div>
         <div class="process-connector" aria-hidden="true"></div>
-        <div class="process-step fix-process">Measure</div>
+        <div class="process-step">Measure</div>
         <div class="process-connector" aria-hidden="true"></div>
-        <div class="process-step fix-process">Simplify</div>
+        <div class="process-step">Simplify</div>
         <div class="process-connector" aria-hidden="true"></div>
-        <div class="process-step automate-run">Automate</div>
+        <div class="process-step">Automate</div>
         <div class="process-connector" aria-hidden="true"></div>
-        <div class="process-step automate-run">Test</div>
+        <div class="process-step">Test</div>
         <div class="process-connector" aria-hidden="true"></div>
-        <div class="process-step automate-run">Pilot</div>
+        <div class="process-step">Pilot</div>
         <div class="process-connector" aria-hidden="true"></div>
-        <div class="process-step automate-run">Monitor</div>
+        <div class="process-step">Monitor</div>
       </div>
       <svg class="process-loop" viewBox="0 0 68 370" aria-hidden="true">
         <path d="M14 8 H58 V352 H14" />
         <polygon points="14,8 22,3 22,13" />
       </svg>
       <span class="process-loop-label">Re-measure</span>
-      <div class="process-captions">
-        <span class="process-caption"><span class="process-swatch fix-process" aria-hidden="true"></span>Fix the process</span>
-        <span class="process-caption"><span class="process-swatch automate-run" aria-hidden="true"></span>Automate and run</span>
-      </div>
     </div>
     <div class="how-copy reveal">
-      <div class="section-head">
-        <span class="eyebrow">How I Work</span>
-      </div>
+      <span class="eyebrow approach-label">Approach</span>
+      <div class="category-label approach-title">How I Work</div>
       <p>I approach automation through the lens of an Industrial Engineer. I treat a workflow as a system: I observe how the work really happens, measure it, and cut unnecessary steps before automating anything. Repetitive tasks go to the system, judgment calls stay with people, and exceptions get a defined path.</p>
       <p>Before anything goes live, I test it with real data, including the edge cases. Then I pilot it small, compare against the baseline, and keep monitoring after launch, because processes drift.</p>
     </div>
