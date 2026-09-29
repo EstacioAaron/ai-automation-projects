@@ -387,13 +387,17 @@ p { margin: 0; }
   overflow: hidden;
   border-radius: var(--radius-lg);
   background: var(--accent-gradient-glass);
-  backdrop-filter: var(--glass-blur);
-  -webkit-backdrop-filter: var(--glass-blur);
-  border: 1px solid var(--glass-border-color);
+  backdrop-filter: blur(20px) saturate(1.12);
+  -webkit-backdrop-filter: blur(20px) saturate(1.12);
+  border: 1px solid rgba(245, 245, 240, 0.2);
   height: 314px;
   padding: 9px 29px;
   margin-left: 30px;
-  box-shadow: var(--shadow-soft);
+  box-shadow: var(--shadow-soft),
+    inset 0 1px 0 rgba(245, 245, 240, 0.16),
+    inset 0 -1px 0 rgba(8, 12, 14, 0.28);
+
+  filter: brightness(1.08);
 }
 
 .marquee-card::before,
@@ -409,12 +413,16 @@ p { margin: 0; }
 
 .marquee-card::before {
   top: 0;
-  background: linear-gradient(180deg, rgba(35,57,64,0.85), transparent);
+  height: 72px;
+  filter: blur(4px);
+  background: radial-gradient(ellipse 90% 120% at 8% 0%, rgba(245, 245, 240, 0.08) 0%, rgba(245, 245, 240, 0.025) 36%, transparent 78%), linear-gradient(180deg, rgba(12, 18, 20, 0.16) 0%, transparent 100%);
 }
 
 .marquee-card::after {
   bottom: 0;
-  background: linear-gradient(0deg, rgba(76,112,123,0.85), transparent);
+  height: 64px;
+  filter: blur(4px);
+  background: linear-gradient(0deg, rgba(10, 15, 17, 0.2) 0%, transparent 100%);
 }
 
 .marquee-track {
@@ -509,7 +517,7 @@ section { padding: 97px 0; }
 }
 
 .how-copy p {
-  margin-bottom: 22px;
+  margin-bottom: 16px;
   font-size: 19px;
   color: var(--text);
 }
@@ -518,9 +526,10 @@ section { padding: 97px 0; }
 
 .process-flow {
   position: relative;
-  max-width: 500px;
+  max-width: 520px;
   margin: 0 auto;
   padding: 4px 56px 0 0;
+  top: -6px;
 }
 
 .process-steps {
@@ -547,6 +556,11 @@ section { padding: 97px 0; }
   font-size: 17px;
   font-weight: 700;
   line-height: 1.2;
+}
+
+.approach-title {
+  font-size: 24px;
+  font-weight: 500;
 }
 
 .process-connector {
@@ -1641,7 +1655,8 @@ body {
     </div>
     <div class="how-copy reveal">
       <div class="category-label approach-title">How I Work</div>
-      <p>I approach automation through the lens of an Industrial Engineer.<br><br>I treat a workflow as a system: I observe how the work really happens, measure it, and cut unnecessary steps before automating anything. Repetitive tasks go to the system, judgment calls stay with people, and exceptions get a defined path.</p>
+      <p>I approach automation through the lens of an Industrial Engineer.</p>
+      <p>I treat a workflow as a system: I observe how the work really happens, measure it, and cut unnecessary steps before automating anything. Repetitive tasks go to the system, judgment calls stay with people, and exceptions get a defined path.</p>
       <p>Before anything goes live, I test it with real data, including the edge cases. Then I pilot it small, compare against the baseline, and keep monitoring after launch, because processes drift.</p>
     </div>
   </div>
