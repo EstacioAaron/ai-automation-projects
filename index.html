@@ -518,7 +518,7 @@ section { padding: 97px 0; }
 
 .process-flow {
   position: relative;
-  max-width: 460px;
+  max-width: 480px;
   margin: 0 auto;
   padding: 4px 56px 0 0;
 }
@@ -1117,7 +1117,12 @@ section { padding: 97px 0; }
 
 #about,
 #connect {
-  min-height: 60svh;
+  min-height: calc(100svh - var(--site-nav-height, 0px));
+}
+
+@media (max-width: 780px) {
+  #about,
+  #connect { min-height: auto; }
 }
 
 .skills-lead { margin-top: 4px; }
