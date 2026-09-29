@@ -413,12 +413,16 @@ p { margin: 0; }
 
 .marquee-card::before {
   top: 0;
-  background: linear-gradient(135deg, rgba(245, 245, 240, 0.12), transparent 48%), linear-gradient(180deg, rgba(12, 18, 20, 0.38), transparent);
+  height: 72px;
+  filter: blur(4px);
+  background: radial-gradient(ellipse 90% 120% at 8% 0%, rgba(245, 245, 240, 0.08) 0%, rgba(245, 245, 240, 0.025) 36%, transparent 78%), linear-gradient(180deg, rgba(12, 18, 20, 0.16) 0%, transparent 100%);
 }
 
 .marquee-card::after {
   bottom: 0;
-  background: linear-gradient(0deg, rgba(10, 15, 17, 0.42), transparent);
+  height: 64px;
+  filter: blur(4px);
+  background: linear-gradient(0deg, rgba(10, 15, 17, 0.2) 0%, transparent 100%);
 }
 
 .marquee-track {
