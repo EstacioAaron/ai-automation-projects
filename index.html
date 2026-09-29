@@ -386,14 +386,16 @@ p { margin: 0; }
   z-index: 1;
   overflow: hidden;
   border-radius: var(--radius-lg);
-  background: var(--accent-gradient-glass);
-  backdrop-filter: var(--glass-blur);
-  -webkit-backdrop-filter: var(--glass-blur);
-  border: 1px solid var(--glass-border-color);
+  background:
+    linear-gradient(135deg, rgba(245, 245, 240, 0.09) 0%, rgba(245, 245, 240, 0.025) 32%, rgba(9, 14, 17, 0.16) 100%),
+    rgba(20, 27, 29, 0.28);
+  backdrop-filter: blur(20px) saturate(1.12);
+  -webkit-backdrop-filter: blur(20px) saturate(1.12);
+  border: 1px solid rgba(245, 245, 240, 0.18);
   height: 314px;
   padding: 9px 29px;
   margin-left: 30px;
-  box-shadow: var(--shadow-soft);
+  box-shadow: var(--shadow-soft), inset 0 1px 0 rgba(245, 245, 240, 0.16), inset 0 -1px 0 rgba(8, 12, 14, 0.28);
 }
 
 .marquee-card::before,
@@ -409,12 +411,12 @@ p { margin: 0; }
 
 .marquee-card::before {
   top: 0;
-  background: linear-gradient(180deg, rgba(35,57,64,0.85), transparent);
+  background: linear-gradient(135deg, rgba(245, 245, 240, 0.12), transparent 48%), linear-gradient(180deg, rgba(12, 18, 20, 0.38), transparent);
 }
 
 .marquee-card::after {
   bottom: 0;
-  background: linear-gradient(0deg, rgba(76,112,123,0.85), transparent);
+  background: linear-gradient(0deg, rgba(10, 15, 17, 0.42), transparent);
 }
 
 .marquee-track {
