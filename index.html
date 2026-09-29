@@ -386,16 +386,18 @@ p { margin: 0; }
   z-index: 1;
   overflow: hidden;
   border-radius: var(--radius-lg);
-  background:
-    linear-gradient(135deg, rgba(245, 245, 240, 0.09) 0%, rgba(245, 245, 240, 0.025) 32%, rgba(10, 23, 29, 0.18) 100%),
-    rgba(20, 34, 39, 0.3);
+  background: var(--accent-gradient-glass);
   backdrop-filter: blur(20px) saturate(1.12);
   -webkit-backdrop-filter: blur(20px) saturate(1.12);
-  border: 1px solid rgba(245, 245, 240, 0.18);
+  border: 1px solid rgba(245, 245, 240, 0.2);
   height: 314px;
   padding: 9px 29px;
   margin-left: 30px;
-  box-shadow: var(--shadow-soft), inset 0 1px 0 rgba(245, 245, 240, 0.16), inset 0 -1px 0 rgba(8, 12, 14, 0.28);
+  box-shadow: var(--shadow-soft),
+    inset 0 1px 0 rgba(245, 245, 240, 0.16),
+    inset 0 -1px 0 rgba(8, 12, 14, 0.28);
+
+  filter: brightness(1.08);
 }
 
 .marquee-card::before,
@@ -511,7 +513,7 @@ section { padding: 97px 0; }
 }
 
 .how-copy p {
-  margin-bottom: 22px;
+  margin-bottom: 16px;
   font-size: 19px;
   color: var(--text);
 }
@@ -520,9 +522,10 @@ section { padding: 97px 0; }
 
 .process-flow {
   position: relative;
-  max-width: 500px;
+  max-width: 520px;
   margin: 0 auto;
   padding: 4px 56px 0 0;
+  top: -6px;
 }
 
 .process-steps {
@@ -549,6 +552,11 @@ section { padding: 97px 0; }
   font-size: 17px;
   font-weight: 700;
   line-height: 1.2;
+}
+
+.approach-title {
+  font-size: 24px;
+  font-weight: 500;
 }
 
 .process-connector {
