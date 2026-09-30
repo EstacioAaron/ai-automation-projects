@@ -400,25 +400,38 @@ p { margin: 0; }
   filter: brightness(1.08);
 }
 
-.marquee-card::before,
-.marquee-card::after {
+.marquee-card::before {
   content: "";
   position: absolute;
+  top: 0;
   left: 0;
   right: 0;
   height: 28px;
   z-index: 2;
   pointer-events: none;
+  filter: blur(4px);
+  background: radial-gradient(ellipse 90% 120% at 8% 0%, rgba(245, 245, 240, 0.08) 0%, rgba(245, 245, 240, 0.025) 36%, transparent 78%);
 }
 
-.marquee-card::before {
-  top: 0;
-  background: radial-gradient(ellipse 90% 120% at 8% 0%, rgba(245, 245, 240, 0.08) 0%, rgba(245, 245, 240, 0.025) 36%, transparent 78%), linear-gradient(180deg, rgba(12, 18, 20, 0.52) 0%, rgba(12, 18, 20, 0.18) 55%, transparent 100%);
-}
+.marquee-viewport {
+  height: 100%;
+  overflow: hidden;
 
-.marquee-card::after {
-  bottom: 0;
-  background: linear-gradient(0deg, rgba(10, 15, 17, 0.52) 0%, rgba(10, 15, 17, 0.18) 55%, transparent 100%);
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    transparent 0%,
+    black 12%,
+    black 88%,
+    transparent 100%
+  );
+
+  mask-image: linear-gradient(
+    to bottom,
+    transparent 0%,
+    black 12%,
+    black 88%,
+    transparent 100%
+  );
 }
 
 .marquee-track {
@@ -1600,8 +1613,10 @@ body {
     </div>
 
 	<div class="hero-familiar">
- 	 <div class="marquee-card">
-  	  <div class="marquee-track" id="marquee-track"></div>
+	<div class="marquee-card">
+		<div class="marquee-viewport">
+			<div class="marquee-track" id="marquee-track"></div>
+		</div>
  	 </div>
 	  <a href="#connect" class="familiar-label">
 	    Sounds familiar?
