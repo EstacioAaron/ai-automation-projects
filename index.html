@@ -413,20 +413,20 @@ p { margin: 0; }
 
 .marquee-card::before {
   top: 0;
-  height: 72px;
+  height: 40px;
   filter: blur(4px);
   background: radial-gradient(ellipse 90% 120% at 8% 0%, rgba(245, 245, 240, 0.08) 0%, rgba(245, 245, 240, 0.025) 36%, transparent 78%), linear-gradient(180deg, rgba(12, 18, 20, 0.16) 0%, transparent 100%);
 }
 
 .marquee-card::after {
   bottom: 0;
-  height: 64px;
+  height: 36px;
   filter: blur(4px);
   background: linear-gradient(0deg, rgba(10, 15, 17, 0.2) 0%, transparent 100%);
 }
 
 .marquee-track {
-  animation: marquee-scroll 34s linear infinite;
+  animation: marquee-scroll 36s linear infinite;
 }
 
 .marquee-card:hover .marquee-track {
@@ -1596,7 +1596,7 @@ body {
     <div class="hero-copy">
       <span class="eyebrow">Industrial Engineer · AI Workflow Automation Builder</span>
       <h1>Automation that solves the problem, not just the task.</h1>
-      <p class="hero-sub">I build automation systems using an Industrial Engineer's approach.</p>
+      <p class="hero-sub">I redesign workflows, eliminate bottlenecks, and automate what slows your business down.</p>
       <div class="hero-actions">
         <a href="#projects" class="btn btn-solid">See what I've built</a>
         <a href="#connect" class="btn btn-outline">Let's talk about your process</a>
@@ -2412,7 +2412,7 @@ function resumeMarquee() {
   applyMarqueeOffset();
   const progress = marqueeHalfHeight ? marqueeOffset / marqueeHalfHeight : 0;
   marqueeTrack.style.animation = "";
-  marqueeTrack.style.animationDelay = (-progress * 34) + "s";
+  marqueeTrack.style.animationDelay = (-progress * 36) + "s";
   marqueeTrack.style.transform = "";
   marqueeManual = false;
   marqueeCard.classList.remove("manual-scroll");
