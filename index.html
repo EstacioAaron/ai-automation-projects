@@ -406,23 +406,19 @@ p { margin: 0; }
   position: absolute;
   left: 0;
   right: 0;
-  height: 40px;
+  height: 28px;
   z-index: 2;
   pointer-events: none;
 }
 
 .marquee-card::before {
   top: 0;
-  height: 40px;
-  filter: blur(4px);
-  background: radial-gradient(ellipse 90% 120% at 8% 0%, rgba(245, 245, 240, 0.08) 0%, rgba(245, 245, 240, 0.025) 36%, transparent 78%), linear-gradient(180deg, rgba(12, 18, 20, 0.16) 0%, transparent 100%);
+  background: radial-gradient(ellipse 90% 120% at 8% 0%, rgba(245, 245, 240, 0.08) 0%, rgba(245, 245, 240, 0.025) 36%, transparent 78%), linear-gradient(180deg, rgba(12, 18, 20, 0.52) 0%, rgba(12, 18, 20, 0.18) 55%, transparent 100%);
 }
 
 .marquee-card::after {
   bottom: 0;
-  height: 36px;
-  filter: blur(4px);
-  background: linear-gradient(0deg, rgba(10, 15, 17, 0.2) 0%, transparent 100%);
+  background: linear-gradient(0deg, rgba(10, 15, 17, 0.52) 0%, rgba(10, 15, 17, 0.18) 55%, transparent 100%);
 }
 
 .marquee-track {
