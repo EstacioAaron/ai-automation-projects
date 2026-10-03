@@ -394,8 +394,8 @@ p { margin: 0; }
   padding: 9px 29px;
   margin-left: 30px;
   box-shadow: var(--shadow-soft),
-    inset 0 1px 0 rgba(245, 245, 240, 0.16),
-    inset 0 -1px 0 rgba(8, 12, 14, 0.28);
+    inset 0 -8px 14px -10px rgba(245, 245, 240, 0.28),
+    inset 0 -8px 14px -10px rgba(245, 245, 240, 0.16);
 
   filter: brightness(1.08);
 }
@@ -406,11 +406,16 @@ p { margin: 0; }
   top: 0;
   left: 0;
   right: 0;
-  height: 28px;
+  height: 35px;
   z-index: 2;
   pointer-events: none;
   filter: blur(4px);
-  background: radial-gradient(ellipse 90% 120% at 8% 0%, rgba(245, 245, 240, 0.08) 0%, rgba(245, 245, 240, 0.025) 36%, transparent 78%);
+  background: radial-gradient(
+  ellipse 90% 120% at 8% 0%,
+  rgba(245, 245, 240, 0.12) 0%,
+  rgba(245, 245, 240, 0.025) 36%,
+  transparent 78%
+);
 }
 
 .marquee-viewport {
@@ -418,20 +423,20 @@ p { margin: 0; }
   overflow: hidden;
 
   -webkit-mask-image: linear-gradient(
-    to bottom,
-    transparent 0%,
-    black 12%,
-    black 88%,
-    transparent 100%
-  );
+  to bottom,
+  transparent 0%,
+  black 20%,
+  black 80%,
+  transparent 100%
+);
 
-  mask-image: linear-gradient(
-    to bottom,
-    transparent 0%,
-    black 12%,
-    black 88%,
-    transparent 100%
-  );
+mask-image: linear-gradient(
+  to bottom,
+  transparent 0%,
+  black 20%,
+  black 80%,
+  transparent 100%
+);
 }
 
 .marquee-track {
@@ -713,7 +718,7 @@ section { padding: 97px 0; }
   font-family: var(--font-mono);
   font-size: 13px;
   color: var(--text-muted);
-  border: 1px solid rgba(245, 245, 240, 0.2);
+  border: 1px solid rgba(245, 245, 240, 0.4);
   border-radius: 999px;
   padding: 4px 11px;
 }
@@ -1118,8 +1123,11 @@ section { padding: 97px 0; }
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
+  display: grid;
+  place-items: center;
   width: 42px;
   height: 42px;
+  padding: 0;
   border-radius: 50%;
   border: 1px solid rgba(245, 245, 240, 0.25);
   background: rgba(245, 245, 240, 0.12);
@@ -1127,6 +1135,7 @@ section { padding: 97px 0; }
   -webkit-backdrop-filter: blur(12px);
   color: var(--text);
   font-size: 24px;
+  line-height: 1;
   cursor: pointer;
 }
 
@@ -1490,20 +1499,6 @@ footer .wrap {
 }
 
 /* ============================================
-   Reveal on scroll (single subtle treatment)
-   ============================================ */
-.reveal {
-  opacity: 0;
-  transform: translateY(14px);
-  transition: opacity 0.6s ease, transform 0.6s ease;
-}
-
-.reveal.in-view {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* ============================================
    Lighter weight for elements using --font-mono
    (Rethink Sans is also the heading font at 700,
    so these need an explicit lighter weight, except
@@ -1860,7 +1855,7 @@ body {
     <div class="hero-copy">
       <span class="eyebrow">Industrial Engineer · AI Workflow Automation Builder</span>
       <h1>Automation that solves the problem, not just the task.</h1>
-      <p class="hero-sub">I redesign workflows, eliminate bottlenecks, and automate what slows your business down.</p>
+      <p class="hero-sub">I redesign workflows, eliminate bottlenecks, and automate<br>what slows your business down.</p>
       <div class="hero-actions">
         <a href="#projects" class="btn btn-solid">See what I've built</a>
         <a href="#connect" class="btn btn-outline">Let's talk about your process</a>
@@ -2984,26 +2979,6 @@ emailRevealBtn.addEventListener("click", () => {
   link.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"></rect><path d="m22 7-10 5L2 7"></path></svg>' + email;
   emailRevealBtn.replaceWith(link);
 });
-
-// ============================================
-// Scroll reveal (single subtle treatment, respects reduced motion)
-// ============================================
-const revealEls = document.querySelectorAll(".reveal");
-
-if ("IntersectionObserver" in window) {
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add("in-view");
-        observer.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.12 });
-
-  revealEls.forEach(el => observer.observe(el));
-} else {
-  revealEls.forEach(el => el.classList.add("in-view"));
-}
 
 </script>
 
