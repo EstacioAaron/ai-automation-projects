@@ -394,8 +394,8 @@ p { margin: 0; }
   padding: 9px 29px;
   margin-left: 30px;
   box-shadow: var(--shadow-soft),
-    inset 0 1px 0 rgba(245, 245, 240, 0.16),
-    inset 0 -1px 0 rgba(8, 12, 14, 0.28);
+    inset 0 -8px 14px -10px rgba(245, 245, 240, 0.28),
+    inset 0 -8px 14px -10px rgba(245, 245, 240, 0.16);
 
   filter: brightness(1.08);
 }
@@ -406,11 +406,16 @@ p { margin: 0; }
   top: 0;
   left: 0;
   right: 0;
-  height: 28px;
+  height: 35px;
   z-index: 2;
   pointer-events: none;
   filter: blur(4px);
-  background: radial-gradient(ellipse 90% 120% at 8% 0%, rgba(245, 245, 240, 0.08) 0%, rgba(245, 245, 240, 0.025) 36%, transparent 78%);
+  background: radial-gradient(
+  ellipse 90% 120% at 8% 0%,
+  rgba(245, 245, 240, 0.12) 0%,
+  rgba(245, 245, 240, 0.025) 36%,
+  transparent 78%
+);
 }
 
 .marquee-viewport {
@@ -418,20 +423,20 @@ p { margin: 0; }
   overflow: hidden;
 
   -webkit-mask-image: linear-gradient(
-    to bottom,
-    transparent 0%,
-    black 12%,
-    black 88%,
-    transparent 100%
-  );
+  to bottom,
+  transparent 0%,
+  black 20%,
+  black 80%,
+  transparent 100%
+);
 
-  mask-image: linear-gradient(
-    to bottom,
-    transparent 0%,
-    black 12%,
-    black 88%,
-    transparent 100%
-  );
+mask-image: linear-gradient(
+  to bottom,
+  transparent 0%,
+  black 20%,
+  black 80%,
+  transparent 100%
+);
 }
 
 .marquee-track {
@@ -713,7 +718,7 @@ section { padding: 97px 0; }
   font-family: var(--font-mono);
   font-size: 13px;
   color: var(--text-muted);
-  border: 1px solid rgba(245, 245, 240, 0.2);
+  border: 1px solid rgba(245, 245, 240, 0.4);
   border-radius: 999px;
   padding: 4px 11px;
 }
@@ -910,6 +915,7 @@ section { padding: 97px 0; }
 #project-child-backdrop { z-index: 110; }
 
 #project-child-backdrop .modal-box {
+  --carousel-media-gutter: 58px;
   max-width: 1180px;
   height: 82vh;
   padding: 38px 44px 44px;
@@ -924,6 +930,10 @@ section { padding: 97px 0; }
   color: var(--text);
   padding-right: 100px;
   margin-bottom: 28px;
+}
+
+.child-breadcrumb.is-screenshot {
+  padding-left: var(--carousel-media-gutter);
 }
 
 .child-content {
@@ -1028,10 +1038,10 @@ section { padding: 97px 0; }
 }
 
 .carousel-title {
-  width: min(820px, 100%);
+  align-self: stretch;
   font-size: 14px;
   font-weight: 700;
-  margin: 0 0 12px;
+  margin: 0 var(--carousel-media-gutter) 12px;
 }
 
 .carousel-stage {
@@ -1042,7 +1052,7 @@ section { padding: 97px 0; }
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 0 58px;
+  padding: 0 var(--carousel-media-gutter);
   overflow: hidden;
 }
 
@@ -1068,6 +1078,54 @@ section { padding: 97px 0; }
   max-height: 100%;
   object-fit: contain;
   border-radius: 8px;
+}
+
+.carousel-image.is-zoomable { cursor: zoom-in; }
+.carousel-image.is-zoomable:focus-visible {
+  outline: 2px solid var(--accent-dark);
+  outline-offset: 3px;
+}
+
+.carousel-zoom-affordance {
+  position: absolute;
+  top: 8px;
+  right: var(--carousel-media-gutter);
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  height: 28px;
+  padding: 6px;
+  overflow: hidden;
+  border: 1px solid rgba(245, 245, 240, 0.25);
+  border-radius: 999px;
+  background: rgba(44, 45, 46, 0.72);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  color: var(--text-muted);
+  pointer-events: none;
+}
+
+.carousel-zoom-affordance[hidden] { display: none; }
+.carousel-zoom-affordance svg {
+  width: 14px;
+  height: 14px;
+  flex: 0 0 auto;
+}
+
+.carousel-zoom-label {
+  max-width: 0;
+  margin-left: 0;
+  overflow: hidden;
+  opacity: 0;
+  white-space: nowrap;
+  font: 11px var(--font-mono);
+  transition: max-width 0.18s ease, margin-left 0.18s ease, opacity 0.15s ease;
+}
+
+.carousel-zoom-affordance.show-label .carousel-zoom-label {
+  max-width: 130px;
+  margin-left: 6px;
+  opacity: 1;
 }
 
 .carousel-grouped {
@@ -1115,24 +1173,38 @@ section { padding: 97px 0; }
 }
 
 .carousel-arrow {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
+  flex: 0 0 auto;
+  display: grid;
+  place-items: center;
   width: 42px;
   height: 42px;
+  padding: 0;
   border-radius: 50%;
   border: 1px solid rgba(245, 245, 240, 0.25);
   background: rgba(245, 245, 240, 0.12);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   color: var(--text);
-  font-size: 24px;
+  line-height: 1;
   cursor: pointer;
 }
 
 .carousel-arrow:hover { background: rgba(245, 245, 240, 0.2); }
-.carousel-arrow.prev { left: 4px; }
-.carousel-arrow.next { right: 4px; }
+.carousel-arrow::before {
+  content: "";
+  width: 9px;
+  height: 11px;
+  background: currentColor;
+}
+.carousel-arrow.prev::before { clip-path: polygon(100% 0, 0 50%, 100% 100%); }
+.carousel-arrow.next::before { clip-path: polygon(0 0, 100% 50%, 0 100%); }
+
+.carousel-navigation {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 46px;
+}
 
 .carousel-dots {
   display: flex;
@@ -1141,14 +1213,14 @@ section { padding: 97px 0; }
 }
 
 .carousel-footer {
-  flex: 0 0 48px;
-  width: min(calc(100% - 116px), 920px);
-  height: 48px;
+  flex: 0 0 62px;
+  width: min(calc(100% - var(--carousel-media-gutter) - var(--carousel-media-gutter)), 920px);
+  height: 62px;
   display: grid;
   grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
   align-items: center;
   gap: 12px;
-  padding-top: 14px;
+  padding: 14px 0 6px;
   box-sizing: border-box;
 }
 
@@ -1176,7 +1248,7 @@ section { padding: 97px 0; }
 
 .carousel-stage.is-inspect {
   align-items: flex-start;
-  padding: 0 58px;
+  padding: 0 var(--carousel-media-gutter);
 }
 .carousel-stage.is-inspect .carousel-preview {
   max-width: none;
@@ -1290,13 +1362,13 @@ section { padding: 97px 0; }
 
 @media (max-width: 780px) {
   #project-child-backdrop .modal-box {
+    --carousel-media-gutter: 50px;
     width: 92vw;
     height: 88vh;
     padding: 30px 20px 24px;
   }
 
   .child-breadcrumb { padding-right: 74px; }
-  .carousel-stage { padding: 0 42px; }
 }
 
 .modal-media-placeholder {
@@ -1490,20 +1562,6 @@ footer .wrap {
 }
 
 /* ============================================
-   Reveal on scroll (single subtle treatment)
-   ============================================ */
-.reveal {
-  opacity: 0;
-  transform: translateY(14px);
-  transition: opacity 0.6s ease, transform 0.6s ease;
-}
-
-.reveal.in-view {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* ============================================
    Lighter weight for elements using --font-mono
    (Rethink Sans is also the heading font at 700,
    so these need an explicit lighter weight, except
@@ -1688,13 +1746,24 @@ body {
   }
 
   .carousel-title { font-size: 13px; }
-  .carousel-stage { padding-inline: 50px; }
-  .carousel-footer { width: min(calc(100% - 100px), 920px); }
+  .carousel-footer {
+    flex-basis: auto;
+    width: 100%;
+    height: auto;
+    min-height: 64px;
+    grid-template-columns: 1fr;
+    justify-items: center;
+    gap: 6px;
+  }
+  .carousel-footer-spacer { display: none; }
+  .carousel-footer-actions { justify-self: center; }
+  .carousel-footer-actions:empty { display: none; }
+  .carousel-navigation { gap: 28px; }
   .carousel-arrow { width: 44px; height: 44px; }
 
   .carousel-dot {
     position: relative;
-    width: 32px;
+    width: 30px;
     height: 32px;
     border: 0;
     background: transparent;
@@ -1703,7 +1772,7 @@ body {
   .carousel-dot::before {
     content: "";
     position: absolute;
-    inset: 11px;
+    inset: 11px 10px;
     border: 1px solid rgba(245, 245, 240, 0.55);
     border-radius: 50%;
   }
@@ -1797,6 +1866,7 @@ body {
   }
 
   #project-child-backdrop .modal-box {
+    --carousel-media-gutter: 46px;
     height: calc(100vh - 16px);
     height: calc(100dvh - 16px);
     padding: 24px 12px 16px;
@@ -1813,10 +1883,6 @@ body {
   .modal-media-img { margin-top: 46px; max-height: 30vh; }
 
   .child-breadcrumb { padding-right: 58px; font-size: 12px; }
-  .carousel-stage { padding-inline: 46px; }
-  .carousel-footer { width: min(calc(100% - 92px), 920px); }
-  .carousel-arrow.prev { left: 0; }
-  .carousel-arrow.next { right: 0; }
   .screenshot-tabs { justify-content: flex-start; gap: 18px; }
   .carousel-grouped { flex-direction: column; align-items: center; gap: 12px; }
   .carousel-grouped-item,
@@ -1827,8 +1893,10 @@ body {
     min-height: 0;
   }
   .carousel-grouped-item img { max-height: 100%; max-width: 100%; }
-  .carousel-footer { grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr); }
   .carousel-footer-actions { flex-wrap: wrap; justify-content: flex-end; }
+  .carousel-navigation { gap: 16px; }
+  .carousel-dot { width: 22px; }
+  .carousel-dot::before { inset-inline: 6px; }
   .capabilities-list { width: 100%; padding: 8px 16px; font-size: 16px; }
   .capabilities-list-legacy { padding: 8px 0 8px 20px; }
   .capabilities-group + .capabilities-group { margin-top: 28px; }
@@ -1860,7 +1928,7 @@ body {
     <div class="hero-copy">
       <span class="eyebrow">Industrial Engineer · AI Workflow Automation Builder</span>
       <h1>Automation that solves the problem, not just the task.</h1>
-      <p class="hero-sub">I redesign workflows, eliminate bottlenecks, and automate what slows your business down.</p>
+      <p class="hero-sub">I redesign workflows, eliminate bottlenecks, and automate<br>what slows your business down.</p>
       <div class="hero-actions">
         <a href="#projects" class="btn btn-solid">See what I've built</a>
         <a href="#connect" class="btn btn-outline">Let's talk about your process</a>
@@ -2226,8 +2294,8 @@ const projectDetails = {
     screenshots: {
       procurement: [
         { label: "Reorder condition detected - The trigger", src: "assets/screenshots/Automated Procurement/Reorder condition detected (The trigger).png" },
-        { label: "Slack approval request", layout: "grouped", zoomable: false, sources: ["assets/screenshots/Automated Procurement/Slack-approval1.png", "assets/screenshots/Automated Procurement/Slack-approval2.jpg"] },
         { label: "Procurement workflow", src: "assets/screenshots/Automated Procurement/Automated-procurement-workflow.png", zoomable: true },
+        { label: "Slack approval request", layout: "grouped", zoomable: false, sources: ["assets/screenshots/Automated Procurement/Slack-approval1.png", "assets/screenshots/Automated Procurement/Slack-approval2.jpg"] },
         { label: "Purchase order generated", src: "assets/screenshots/Automated Procurement/Purchase-order-generated.png", zoomable: true },
         { label: "Supplier communication", src: "assets/screenshots/Automated Procurement/Supplier-communication.png", zoomable: true },
         { label: "Database updates", layout: "vertical", zoomable: false, sources: ["assets/screenshots/Automated Procurement/Database-updates 1.png", "assets/screenshots/Automated Procurement/Database-updates 2.png"] },
@@ -2451,6 +2519,7 @@ function openProjectChild(view) {
   const details = projectDetails[activeProject.title] || { screenshots: [], capabilities: [] };
   const viewLabel = view === "workflow" ? "View workflow" : view === "screenshots" ? "Screenshots" : "Key capabilities";
   projectChildBreadcrumb.textContent = `Project | ${activeProject.title} | ${viewLabel}`;
+  projectChildBreadcrumb.classList.toggle("is-screenshot", view === "screenshots");
   projectChildContent.innerHTML = "";
   projectChildContent.className = view === "capabilities"
     ? "child-content capabilities-content"
@@ -2560,14 +2629,20 @@ function renderCarousel(screenshotData) {
     <div class="screenshot-tabs" role="tablist" aria-label="Screenshot groups"${isGrouped ? "" : " hidden"}></div>
     <h3 class="carousel-title"></h3>
     <div class="carousel-stage">
-      <button type="button" class="carousel-arrow prev" aria-label="Previous screenshot">‹</button>
       <div class="carousel-preview"></div>
-      <button type="button" class="carousel-arrow next" aria-label="Next screenshot">›</button>
+      <div class="carousel-zoom-affordance" hidden aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"></circle><line x1="15.5" y1="15.5" x2="21" y2="21"></line><line x1="10.5" y1="7.5" x2="10.5" y2="13.5"></line><line x1="7.5" y1="10.5" x2="13.5" y2="10.5"></line></svg>
+        <span class="carousel-zoom-label">Click image to zoom</span>
+      </div>
     </div>
     <div class="carousel-empty" hidden>No screenshots are available for this feature area yet.</div>
     <div class="carousel-footer">
       <div class="carousel-footer-spacer" aria-hidden="true"></div>
-      <div class="carousel-dots" aria-label="Choose screenshot"></div>
+      <div class="carousel-navigation">
+        <button type="button" class="carousel-arrow prev" aria-label="Previous screenshot"></button>
+        <div class="carousel-dots" aria-label="Choose screenshot"></div>
+        <button type="button" class="carousel-arrow next" aria-label="Next screenshot"></button>
+      </div>
       <div class="carousel-footer-actions"></div>
     </div>`;
   projectChildContent.appendChild(carousel);
@@ -2576,6 +2651,7 @@ function renderCarousel(screenshotData) {
   const title = carousel.querySelector(".carousel-title");
   const stage = carousel.querySelector(".carousel-stage");
   const preview = carousel.querySelector(".carousel-preview");
+  const zoomAffordance = carousel.querySelector(".carousel-zoom-affordance");
   const empty = carousel.querySelector(".carousel-empty");
   const dots = carousel.querySelector(".carousel-dots");
   const previous = carousel.querySelector(".prev");
@@ -2609,7 +2685,20 @@ function renderCarousel(screenshotData) {
     img.src = src;
     img.alt = label;
     if (zoomable) {
-      img.addEventListener("click", () => setInspect(!inspectMode));
+      const toggleInspect = () => setInspect(!inspectMode);
+      img.classList.add("is-zoomable");
+      img.tabIndex = 0;
+      img.setAttribute("role", "button");
+      img.setAttribute("aria-label", inspectMode ? `Return ${label} to fit view` : `Zoom ${label}`);
+      img.addEventListener("click", toggleInspect);
+      img.addEventListener("keydown", (event) => {
+        if (event.key === "Enter" || event.key === " ") {
+          event.preventDefault();
+          toggleInspect();
+        }
+      });
+      img.addEventListener("mouseenter", () => zoomAffordance.classList.add("show-label"));
+      img.addEventListener("mouseleave", () => zoomAffordance.classList.remove("show-label"));
     }
     return img;
   }
@@ -2617,7 +2706,7 @@ function renderCarousel(screenshotData) {
   function renderFooter() {
     footerActions.innerHTML = "";
     const screenshot = screenshots[activeCarouselIndex];
-    if (!screenshot?.zoomable) return;
+    if (!screenshot?.zoomable || !inspectMode) return;
     const addButton = (text, handler, accessibleLabel = text) => {
       const button = document.createElement("button");
       button.type = "button";
@@ -2627,17 +2716,16 @@ function renderCarousel(screenshotData) {
       button.addEventListener("click", handler);
       footerActions.appendChild(button);
     };
-    if (!inspectMode) addButton("Click to zoom", () => setInspect(true));
-    else {
-      addButton("Back to fit", () => setInspect(false));
-      addButton("−", () => { zoomScale = Math.max(MIN_ZOOM, +(zoomScale - 0.2).toFixed(1)); renderSlide(); }, "Zoom out");
-      addButton("+", () => { zoomScale = Math.min(MAX_ZOOM, +(zoomScale + 0.2).toFixed(1)); renderSlide(); }, "Zoom in");
-    }
+    addButton("Back to fit", () => setInspect(false));
+    addButton("−", () => { zoomScale = Math.max(MIN_ZOOM, +(zoomScale - 0.2).toFixed(1)); renderSlide(); }, "Zoom out");
+    addButton("+", () => { zoomScale = Math.min(MAX_ZOOM, +(zoomScale + 0.2).toFixed(1)); renderSlide(); }, "Zoom in");
   }
 
   function renderSlide() {
     const screenshot = screenshots[activeCarouselIndex];
     preview.innerHTML = "";
+    zoomAffordance.classList.remove("show-label");
+    zoomAffordance.hidden = !screenshot?.zoomable || inspectMode;
     if (!screenshot) return;
     if (screenshot.sources) {
       const grouped = document.createElement("div");
@@ -2984,26 +3072,6 @@ emailRevealBtn.addEventListener("click", () => {
   link.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"></rect><path d="m22 7-10 5L2 7"></path></svg>' + email;
   emailRevealBtn.replaceWith(link);
 });
-
-// ============================================
-// Scroll reveal (single subtle treatment, respects reduced motion)
-// ============================================
-const revealEls = document.querySelectorAll(".reveal");
-
-if ("IntersectionObserver" in window) {
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add("in-view");
-        observer.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.12 });
-
-  revealEls.forEach(el => observer.observe(el));
-} else {
-  revealEls.forEach(el => el.classList.add("in-view"));
-}
 
 </script>
 
