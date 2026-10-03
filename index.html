@@ -1142,7 +1142,7 @@ section { padding: 97px 0; }
 
 .carousel-footer {
   flex: 0 0 48px;
-  width: 100%;
+  width: min(calc(100% - 116px), 920px);
   height: 48px;
   display: grid;
   grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
@@ -1689,6 +1689,7 @@ body {
 
   .carousel-title { font-size: 13px; }
   .carousel-stage { padding-inline: 50px; }
+  .carousel-footer { width: min(calc(100% - 100px), 920px); }
   .carousel-arrow { width: 44px; height: 44px; }
 
   .carousel-dot {
@@ -1813,6 +1814,7 @@ body {
 
   .child-breadcrumb { padding-right: 58px; font-size: 12px; }
   .carousel-stage { padding-inline: 46px; }
+  .carousel-footer { width: min(calc(100% - 92px), 920px); }
   .carousel-arrow.prev { left: 0; }
   .carousel-arrow.next { right: 0; }
   .screenshot-tabs { justify-content: flex-start; gap: 18px; }
@@ -1884,7 +1886,7 @@ body {
   <div class="wrap">
     <div class="section-head reveal">
       <span class="eyebrow">Projects</span>
-      <p>Click a project to see the full breakdown, problem, build, and result.</p>
+      <p>Open a project to view the full breakdown, workflow, screenshots, and results.</p>
     </div>
 
     <div id="project-categories"></div>
@@ -2168,11 +2170,11 @@ const projectData = [
 const projectDetails = {
   "AI Driven Supplier Response Automation System": {
     screenshots: [
-      { src: "assets/screenshots/supplier response.png", label: "Supplier response - the trigger" },
+      { src: "assets/screenshots/supplier response.png", label: "Supplier response - The trigger" },
       { src: "assets/screenshots/AI-Email-Classification.png", label: "Email Classification", zoomable: true },
       { src: "assets/screenshots/PO-Replacement.png", label: "PO Replacement for backup supplier", zoomable: true },
       { src: "assets/screenshots/Database-monitoring-updates.png", label: "Database and monitoring updates", zoomable: true },
-      { src: "assets/screenshots/process-monitoring_human_control.png", label: "Process monitoring and human control" }
+      { src: "assets/screenshots/process-monitoring_human_control.png", label: "Process monitoring and human control", zoomable: true }
     ],
     capabilities: [
       "AI-powered supplier email interpretation",
@@ -2186,7 +2188,7 @@ const projectDetails = {
   },
   "Smart Receipts Archiver": {
     screenshots: [
-      { src: "assets/screenshots/Receipt_trigger.png", label: "Receipt sent to the Telegram (The trigger)", zoomable: true },
+      { src: "assets/screenshots/Receipt_trigger.png", label: "Receipt sent to the Telegram - The trigger", zoomable: true },
       { src: "assets/screenshots/Google drive receipt storage.png", label: "Google Drive receipt storage" },
       { src: "assets/screenshots/Google-sheet-receipt-data-logger.png", label: "Google Sheet receipt data logger" }
     ],
@@ -2203,7 +2205,7 @@ const projectDetails = {
   },
   "Speed to Lead SLA Enforcer": {
     screenshots: [
-      { src: "assets/screenshots/Lead-form_The-trigger.png", label: "Lead form (The trigger)", zoomable: true },
+      { src: "assets/screenshots/Lead-form_The-trigger.png", label: "Lead form - The trigger", zoomable: true },
       { src: "assets/screenshots/executions log 2.png", label: "Execution logs 1" },
       { src: "assets/screenshots/Execution logs 1.png", label: "Execution logs 2", zoomable: true },
       { src: "assets/screenshots/welcome_email.png", label: "Welcome email" },
@@ -2223,7 +2225,7 @@ const projectDetails = {
   "AI Powered Procurement and Inventory Management System": {
     screenshots: {
       procurement: [
-        { label: "Reorder condition detected - Trigger", src: "assets/screenshots/Automated Procurement/Reorder condition detected (The trigger).png" },
+        { label: "Reorder condition detected - The trigger", src: "assets/screenshots/Automated Procurement/Reorder condition detected (The trigger).png" },
         { label: "Slack approval request", layout: "grouped", zoomable: false, sources: ["assets/screenshots/Automated Procurement/Slack-approval1.png", "assets/screenshots/Automated Procurement/Slack-approval2.jpg"] },
         { label: "Procurement workflow", src: "assets/screenshots/Automated Procurement/Automated-procurement-workflow.png", zoomable: true },
         { label: "Purchase order generated", src: "assets/screenshots/Automated Procurement/Purchase-order-generated.png", zoomable: true },
@@ -2232,12 +2234,12 @@ const projectDetails = {
         { label: "Process complete", src: "assets/screenshots/Automated Procurement/Process_complete.jpg", zoomable: false }
       ],
       risk: [
-        { label: "Risk detected - Trigger", src: "assets/screenshots/Risk alert/Risk-detected-(The trigger).png", zoomable: false },
+        { label: "Risk detected - The trigger", src: "assets/screenshots/Risk alert/Risk-detected-(The trigger).png", zoomable: false },
         { label: "Risk monitoring workflow", src: "assets/screenshots/Risk alert/Risk-monitoring-workflow.png", zoomable: true },
         { label: "Prioritized risk alert", src: "assets/screenshots/Risk alert/Prioritized-risk-alert.png", zoomable: false }
       ],
       assistant: [
-        { label: "Inventory question - Trigger", src: "assets/screenshots/AI Query/Inventory-question-(The trigger).png", zoomable: false },
+        { label: "Inventory question - The trigger", src: "assets/screenshots/AI Query/Inventory-question-(The trigger).png", zoomable: false },
         { label: "AI query analysis workflow", src: "assets/screenshots/AI Query/AI-query-analysis-workflow.png", zoomable: true },
         { label: "AI inventory response", src: "assets/screenshots/AI Query/AI-inventory-response.png", zoomable: false },
         { label: "Follow-up analysis", src: "assets/screenshots/AI Query/Follow-up-analysis.png", zoomable: false }
